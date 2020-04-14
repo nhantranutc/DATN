@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>News Detail</title>
+    <link rel="stylesheet" th:href="@{/home/style.css}">
+</head>
+<body>
+<div th:replace="fragment/header :: header_info (vm = ${vm.getLayoutHeaderVM()}, vm1 = ${vm.getAccessaryTypeVMS()})"></div>
+
+<div class="roberto-news-area section-padding-100-0">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <!-- Post Thumbnail -->
+                <div class="post-thumbnail mb-50">
+                    <h2 th:text="${vm.getServicesVM().getServiceName()}"></h2>
+                    <br>
+                    <img th:src="${vm.getServicesVM().getImage()}" alt="">
+                </div>
+                <!-- Blog Details Text -->
+                <div class="blog-details-text" data-th-utext="${vm.getServicesVM().getContent()}"></div>
+
+                <!-- Post Author Area -->
+                <div class="post-author-area d-flex align-items-center justify-content-between mb-50">
+                    <ul class="popular-tags">
+
+                    </ul>
+
+                    <!-- Author Social Info -->
+                    <div class="author-social-info d-flex align-items-center">
+                        <p>Chia Sẻ:</p>
+                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+                <div class="roberto-sidebar-area pl-md-4">
+
+                    <!-- Newsletter -->
+                    <div class="single-widget-area mb-100">
+                        <div class="newsletter-form">
+                            <h5>Newsletter</h5>
+                            <p>Subscribe our newsletter gor get notification new updates.</p>
+
+                            <form action="#" method="post">
+                                <input type="email" name="nl-email" id="nlEmail" class="form-control" placeholder="Enter your email...">
+                                <button type="submit" class="btn roberto-btn w-100">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Recent Post -->
+                    <div class="single-widget-area mb-100">
+                        <h4 class="widget-title mb-30">Dịch vụ tiếp theo</h4>
+
+                        <!-- Single Recent Post -->
+                        <th:block th:each="hotServices : ${vm.getServicesVMS()}">
+                            <div class="single-recent-post d-flex">
+                                <!-- Thumb -->
+                                <div class="post-thumb">
+                                    <a th:href="${'/services/detail/' + hotServices.getId()}"><img th:src="${hotServices.getImage()}" alt=""></a>
+                                </div>
+                                <!-- Content -->
+                                <div class="post-content" style="margin-top: -10px">
+                                    <!-- Post Meta -->
+                                    <div class="post-meta">
+                                    </div>
+                                    <a th:href="${'/services/detail/' + hotServices.getId()}" class="post-title" th:text="${hotServices.getDescription()}"></a>
+                                </div>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragment/footer :: footer_info"></div>
+
+<script th:src="@{/home/js/jquery.min.js}"></script>
+<!-- Popper -->
+<script th:src="@{/home/js/popper.min.js}"></script>
+<!-- Bootstrap -->
+<script th:src="@{/home/js/bootstrap.min.js}"></script>
+<!-- All Plugins -->
+<script th:src="@{/home/js/roberto.bundle.js}"></script>
+<!-- Active -->
+<script th:src="@{/home/js/default-assets/active.js}"></script>
+</body>
+</html>

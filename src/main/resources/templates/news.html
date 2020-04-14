@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+    <link rel="stylesheet" th:href="@{/home/style.css}">
+</head>
+<body>
+<div th:replace="fragment/header :: header_info (vm = ${vm.getLayoutHeaderVM()}, vm1 = ${vm.getAccessaryTypeVMS()})"></div>
+
+<div class="roberto-news-area section-padding-100-0">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+
+                <!-- Single Blog Post Area -->
+                <th:block th:each="news : ${vm.getNewsVMList()}">
+                    <div class="single-blog-post d-flex align-items-center mb-50 wow fadeInUp" data-wow-delay="100ms">
+                        <!-- Post Thumbnail -->
+                        <div class="post-thumbnail">
+                            <a th:href="${'/news/detail/' + news.getNewsId()}"><img th:src="${news.getMainImage()}" alt=""></a>
+                        </div>
+                        <!-- Post Content -->
+                        <div class="post-content">
+                            <!-- Post Meta -->
+                            <div class="post-meta">
+                                <a href="#" class="post-author" th:text="${news.getCreateDate()}"></a>
+                                <a href="#" class="post-tutorial" th:text="${news.getAuthor()}"></a>
+                            </div>
+                            <!-- Post Title -->
+                            <a th:href="${'/news/detail/' + news.getNewsId()}" class="post-title" th:text="${news.getTitle()}"></a>
+                            <p th:text="${news.getShortDesc()}"></p>
+                            <a th:href="${'/news/detail/' + news.getNewsId()}" class="btn continue-btn">Đọc Thêm</a>
+                        </div>
+                    </div>
+                </th:block>
+
+                <!-- Pagination -->
+                <nav th:if="${vm.getNewsVMList().size() > 0}" class="roberto-pagination wow fadeInUp mb-100" data-wow-delay="600ms">
+                    <ul class="pagination">
+                        <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+                            <li class="page-item" th:if="${page.number == i}" aria-current="page">
+                                <a class="page-link" th:href="${''}" th:text="${i+1}"><span class="sr-only"></span></a>
+                            </li>
+                            <li class="page-item"  th:unless="${page.number == i}"><a class="page-link" th:text="${i+1}"
+                                                                                      th:href="${'?' + ('&page='+i)
+                                                                                      +(#httpServletRequest.getParameter('size')==null?'':('&size='+#httpServletRequest.getParameter('size')))}"></a></li>
+                        </th:block>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+                <div class="roberto-sidebar-area pl-md-4">
+
+                    <!-- Newsletter -->
+                    <div class="single-widget-area mb-100">
+                        <div class="newsletter-form">
+                            <h5>Newsletter</h5>
+                            <p>Subscribe our newsletter gor get notification new updates.</p>
+
+                            <form action="#" method="post">
+                                <input type="email" name="nl-email" id="nlEmail" class="form-control" placeholder="Enter your email...">
+                                <button type="submit" class="btn roberto-btn w-100">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Recent Post -->
+                    <div class="single-widget-area mb-100">
+                        <h4 class="widget-title mb-30">Tin Nóng</h4>
+
+                        <!-- Single Recent Post -->
+                        <th:block th:each="hotNews : ${vm.getHotNewsVMList()}">
+                            <div class="single-recent-post d-flex">
+                                <!-- Thumb -->
+                                <div class="post-thumb">
+                                    <a th:href="${'/news/detail/' + hotNews.getNewsId()}"><img th:src="${hotNews.getMainImage()}" alt=""></a>
+                                </div>
+                                <!-- Content -->
+                                <div class="post-content">
+                                    <!-- Post Meta -->
+                                    <div class="post-meta">
+                                        <a href="#" class="post-author" th:text="${hotNews.getCreateDate()}"></a>
+                                        <a href="#" class="post-tutorial" th:text="${hotNews.getAuthor()}"></a>
+                                    </div>
+                                    <a th:href="${'/news/detail/' + hotNews.getNewsId()}" class="post-title" th:text="${hotNews.getTitle()}"></a>
+                                </div>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragment/footer :: footer_info"></div>
+
+<script th:src="@{/home/js/jquery.min.js}"></script>
+<!-- Popper -->
+<script th:src="@{/home/js/popper.min.js}"></script>
+<!-- Bootstrap -->
+<script th:src="@{/home/js/bootstrap.min.js}"></script>
+<!-- All Plugins -->
+<script th:src="@{/home/js/roberto.bundle.js}"></script>
+<!-- Active -->
+<script th:src="@{/home/js/default-assets/active.js}"></script>
+</body>
+</html>

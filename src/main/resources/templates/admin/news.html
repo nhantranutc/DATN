@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>News</title>
+
+    <!-- Custom fonts for this template-->
+    <link th:href="@{/admin/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link th:href="@{/admin/css/sb-admin-2.min.css}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">Nhẫn Trần<sup><3</sup></div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" href="index.html">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Interface
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item" th:if="${vm.getRoleId() == 1}">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Quản Lý</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Danh sách quản lý:</h6>
+                    <a class="collapse-item" th:href="${'/admin/accessary'}">Phụ Tùng</a>
+                    <a class="collapse-item" th:href="${'/admin/service'}">Dịch Vụ</a>
+                    <a class="collapse-item" th:href="${'/admin/news'}">Tin Tức</a>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item" th:if="${vm.getRoleId() == 1}">
+            <a class="nav-link" href="charts.html">
+                <i class="fas fa-fw fa-user"></i>
+                <span>Nhân Viên</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="charts.html">
+                <i class="fas fa-fw fa-sticky-note"></i>
+                <span>Lập Hóa Đơn</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="charts.html">
+                <i class="fas fa-fw fa-cart-plus"></i>
+                <span>Hóa Đơn</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="charts.html">
+                <i class="fas fa-fw fa-clock"></i>
+                <span>Lịch Hẹn</span></a>
+        </li>
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item" th:if="${vm.getRoleId() == 1}">
+            <a class="nav-link" href="charts.html">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Biểu Đồ</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <div th:replace="fragment/header-admin :: header_admin_info (vm=${vm.getLayoutHeaderAdminVM()})"></div>
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Quản Lý Dịch Vụ</h6>
+                    </div>
+                    <div class="card-body">
+                        <nav style="margin-left: -30px" class="navbar navbar-expand navbar-light topbar mb-4 static-top">
+                            <!-- Topbar Search -->
+                            <form th:action="@{/admin/news}" method="get" th:object="${title}" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group">
+                                    <input th:field="*{title}" type="text" class="form-control bg-light border-0 small" placeholder="Nhập từ khóa..." aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <a id="new-news" data-toggle="modal" data-target="#displayModal" style="margin-right: -15px" href="#" class="btn btn-primary btn-icon-split">
+                                <span class="icon text-white-50">
+                                  <i class="fas fa-plus"></i>
+                                </span>
+                                <span class="text">Thêm Mới</span>
+                            </a>
+                        </nav>
+
+                        <div class="table-responsive" >
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th style="text-align: center">STT</th>
+                                    <th style="text-align: center">Tiêu đề</th>
+                                    <th style="text-align: center">Mô tả</th>
+                                    <th style="text-align: center; width: 100px">Tác giả</th>
+                                    <th style="text-align: center; width: 200px">Ngày tạo</th>
+                                    <th style="text-align: center; width: 50px"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <th:block th:each="item : ${vm.getNewsVMS()}">
+                                    <tr>
+                                        <td style="text-align: center" th:text="${item.getNewsId()}"></td>
+                                        <td style="text-align: center" th:text="${item.getTitle()}"></td>
+                                        <td style="text-align: center" th:text="${item.getShortDesc()}"></td>
+                                        <td style="text-align: center" th:text="${item.getAuthor()}"></td>
+                                        <td style="text-align: center" th:text="${item.getCreateDate()}"></td>
+                                        <td style="text-align: center">
+                                            <a th:attr="data-news = ${item.getNewsId()}" data-toggle="modal" data-target="#displayModal" class="edit-news">
+                                                <i class="fas fa-cog fa-sm"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </th:block>
+                            </table>
+                        </div>
+
+                        <nav style="margin-top: 50px" aria-label="..." th:if="${vm.getNewsVMS().size()>0}">
+                            <ul class="pagination">
+                                <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+                                    <li class="page-item active" th:if="${page.number == i}" aria-current="page">
+                                        <a class="page-link" th:href="${''}" th:text="${i+1}"><span class="sr-only"></span></a>
+                                    </li>
+                                    <li class="page-item"  th:unless="${page.number == i}"><a class="page-link" th:text="${i+1}"
+                                                                                              th:href="${'?'
+                                                                                       +('&page='+i)
+                                                                                       +(#httpServletRequest.getParameter('size')==null?'':('&size='+#httpServletRequest.getParameter('size')))
+                                                                                       +(#httpServletRequest.getParameter('name')==null?'':('&name='+#httpServletRequest.getParameter('name')))}"></a></li>
+                                </th:block>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Nhẫn Trần Website 2020</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<div class="modal fade" id="displayModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm/Sửa Tin Tức</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center">
+                    <img style="max-width: 200px; height: auto" src="" class="news-main-image">
+                </div>
+
+                <div style="text-align: center; margin-top: 20px; margin-left: 40px">
+                    <input type='file'  id="change-news-mainImage"/>
+                </div>
+
+                <div class="form-group-1" style="margin-top: 10px">
+                    <p class="labelll">Tiêu đề: </p>
+                    <input id="input-news-title" style="margin-top: -15px" type="text" class="form-control bg-light border-0 small" placeholder="Tiêu đề...">
+                </div>
+
+                <div class="form-group-1" style="margin-top: 10px">
+                    <p class="labelll">Mô tả: </p>
+                    <input id="input-news-desc" style="margin-top: -15px" type="text" class="form-control bg-light border-0 small" placeholder="Mô tả...">
+                </div>
+
+                <div class="form-group-1" style="margin-top: 10px">
+                    <p class="labelll">Nội dung: </p>
+                    <textarea type="text" class="form-control" id="input-news-content" placeholder="Nội dung..."></textarea>
+                </div>
+
+                <div class="form-group" style="margin-top: 10px">
+                    <label>Tin nóng?</label>
+                    <select class="form-control" id="input-news-isHot">
+                        <option value="0">Không</option>
+                        <option value="1">Có</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+<!--                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>-->
+                <a class="btn btn-primary btn-save-news" href="#">Lưu thay đổi</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+
+<script th:src="@{/admin/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/admin/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Core plugin JavaScript-->
+<script th:src="@{/admin/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+<!-- Custom scripts for all pages-->
+<script th:src="@{/admin/js/sb-admin-2.min.js}"></script>
+
+<!-- Page level plugins -->
+<script th:src="@{/admin/vendor/chart.js/Chart.min.js}"></script>
+
+<!-- Page level custom scripts -->
+<script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>
+<script th:src="@{/admin/js/demo/chart-pie-demo.js}"></script>
+<script th:src="@{/js/admin-news.js}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/home/style.css}">
+</head>
+<body>
+<div th:replace="fragment/header :: header_info (vm = ${vm.getLayoutHeaderVM()}, vm1 = ${vm.getAccessaryTypeVMS()})"></div>
+
+<section class="roberto-about-area section-padding-100-0">
+    <div class="container mt-100">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6">
+                <!-- Section Heading -->
+                <div class="section-heading wow fadeInUp" data-wow-delay="100ms">
+                    <h6>Giới thiệu</h6>
+                    <h3>Chào mừng bạn đến với : Trung tâm dịch vụ-ATOM AUTO SERVICES</h3>
+                </div>
+                <div class="about-us-content mb-100" style="margin-top: -40px">
+                    <h5 class="wow fadeInUp" data-wow-delay="300ms">ATOM AUTO SERVICES là trung tâm dịch vụ bảo dưỡng
+                        ôtô cao cấp,
+                        đáp ứng hệ thống tiêu chuẩn toàn cầu của một mô hình B-select thuộc tập đoàn BRIDGESTONE .ATOM
+                        Auto
+                        Services phục vụ toàn diện nhu cầu về lốp xe,
+                        ắc quy, bảo dưỡng và làm đẹp cho các dòng xe cá nhân, xe gia đình, xe du lịch.</h5>
+                    <a href="#ds" class="form-control btn roberto-btn w-100" style="margin-top: -10px">Xem thêm</a>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="about-us-thumbnail mb-100 wow fadeInUp" data-wow-delay="700ms">
+                    <div class="row no-gutters">
+                        <div class="col-6">
+                            <div class="single-thumb">
+                                <img src="https://baohaauto.vn/wp-content/uploads/cop-noc-cho-range-rover-evoque-hang-nhap-chinh-hang-7.jpg"
+                                     alt="">
+                            </div>
+                            <div class="single-thumb">
+                                <img src="https://thanhphongauto.com/wp-content/uploads/2019/09/khi-bao-duong-nhua-xe-oto-01.jpg"
+                                     alt="">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="single-thumb">
+                                <img style="height: 400px"
+                                     src="https://media1.nguoiduatin.vn/thumb_x600x600/media/cao-thu-hang/2020/01/09/nhung-luu0y-khi-bao-duong-o-to-11.jpg"
+                                     alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="roberto-service-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="service-content d-flex align-items-center justify-content-between">
+                    <!-- Single Service Area -->
+                    <div class="single-service--area mb-100 wow fadeInUp" data-wow-delay="100ms">
+                        <img src="home/img/core-img/icon-1.png" alt="">
+                        <h5>Transportion</h5>
+                    </div>
+
+                    <!-- Single Service Area -->
+                    <div class="single-service--area mb-100 wow fadeInUp" data-wow-delay="300ms">
+                        <img src="home/img/core-img/icon-2.png" alt="">
+                        <h5>Reiseservice</h5>
+                    </div>
+
+                    <!-- Single Service Area -->
+                    <div class="single-service--area mb-100 wow fadeInUp" data-wow-delay="500ms">
+                        <img src="home/img/core-img/icon-3.png" alt="">
+                        <h5>Spa Relaxtion</h5>
+                    </div>
+
+                    <!-- Single Service Area -->
+                    <div class="single-service--area mb-100 wow fadeInUp" data-wow-delay="700ms">
+                        <img src="home/img/core-img/icon-4.png" alt="">
+                        <h5>Restaurant</h5>
+                    </div>
+
+                    <!-- Single Service Area -->
+                    <div class="single-service--area mb-100 wow fadeInUp" data-wow-delay="900ms">
+                        <img src="home/img/core-img/icon-1.png" alt="">
+                        <h5>Bar &amp; Drink</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Service Area End -->
+
+<!-- Our Room Area Start -->
+<section class="roberto-rooms-area">
+    <div class="rooms-slides owl-carousel">
+        <!-- Single Room Slide -->
+        <th:block th:each="services : ${vm.getServicesVMS()}">
+            <div class="single-room-slide d-flex align-items-center">
+                <!-- Thumbnail -->
+                <!-- style="background-image: url(img/bg-img/16.jpg);" -->
+                <div class="room-thumbnail h-100 bg-img">
+                    <img style="height: 500px"
+                         th:src="${services.getImage()}" alt="">
+                </div>
+
+                <!-- Content -->
+                <div class="room-content">
+                    <h2 data-animation="fadeInUp" data-delay="100ms" th:text="${services.getServiceName()}"></h2>
+                    <h3 data-animation="fadeInUp" data-delay="300ms">400$ <span>/ Day</span></h3>
+                    <ul class="room-feature" data-animation="fadeInUp" data-delay="500ms">
+                        <li><span><i class="fa fa-check"></i> Description</span> <span
+                                th:text="${services.getDescription()}"></span></li>
+                        <!--                        <li><span><i class="fa fa-check"></i> Capacity</span> <span>: Max persion 5</span></li>-->
+                        <!--                        <li><span><i class="fa fa-check"></i> Bed</span> <span>: King Beds</span></li>-->
+                        <!--                        <li><span><i class="fa fa-check"></i> Services</span> <span>: Wifi, Television, Bathroom</span></li>-->
+                    </ul>
+                    <a style="margin-left: 350px" th:href="${'/services/detail/' + services.getId()}"
+                       class="btn roberto-btn mt-30"
+                       data-animation="fadeInUp" data-delay="700ms">Xem chi tiết</a>
+                </div>
+            </div>
+        </th:block>
+    </div>
+</section>
+<!-- Our Room Area End -->
+
+<!-- Testimonials Area Start -->
+<section class="roberto-testimonials-area section-padding-100-0">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6">
+                <div class="testimonial-thumbnail owl-carousel mb-100">
+                    <img src="https://www.5giay.vn/data/node-images/158_e1c088d2ae7778d078b79450b2cf2df1.jpg" alt="">
+                    <img style="height: 450px; margin-top: 30px"
+                         src="https://lh3.googleusercontent.com/proxy/lo3gPeWIWfSIe5t7bDT3kgfFs3lJQ6CuvxzNoCa-RXGGgmlVS0fHQ76GsOPX9fa-mJsNXeAJ1LNdm0mhXnXPCu20RmoAT2OMnaAQzqEoXEOK9SRCHsz1RFLginUzI7ii9Mc9wSSILKY1_KGCMofwSqjJzAk"
+                         alt="">
+                    <img style="height: 450px; margin-top: 30px"
+                         src="https://maynenkhipro.vn/uploads/3677_cau_nang_1_tru_am_nen_ts_4000c.jpg" alt="">
+                    <img style="height: 450px; margin-top: 30px"
+                         src="https://img.alicdn.com/imgextra/i3/1617837827/TB2Ac8CoyAnBKNjSZFvXXaTKXXa_!!1617837827.jpg"
+                         alt="">
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <!-- Section Heading -->
+                <div class="section-heading">
+                    <h6>Tiêu chí</h6>
+                    <h2>Phục vụ khách hàng với chất lượng tuyệt hảo!</h2>
+                </div>
+                <!-- Testimonial Slide -->
+                <div class="testimonial-slides owl-carousel mb-100">
+
+                    <!-- Single Testimonial Slide -->
+                    <div class="single-testimonial-slide">
+                        <h5>“Không chỉ nỗ lực mang đến chất lượng dịch vụ và sản phẩm tuyệt vời, ATOM Auto Services luôn
+                            trau dồi kiến thức, rèn luyện tay nghề, nâng cao kỹ năng để cải thiện từng ngày,
+                            giúp khách hàng cảm thấy hài lòng, an tâm và tin tưởng”</h5>
+                        <div class="rating-title">
+                            <!--                            <h6>Robert Downey <span>- CEO Deercreative</span></h6>-->
+                        </div>
+                    </div>
+
+                    <!-- Single Testimonial Slide -->
+                    <div class="single-testimonial-slide">
+                        <!--                        <h5><p>Phục vụ 7 ngày/ tuần</p><p>Phòng chờ 5 sao</p></h5>-->
+                        <ul>
+                            <ol>- Phục vụ 7 ngày/ tuần</ol>
+                            <ol>- Phòng chờ 5 sao</ol>
+                            <ol>- Sạch sẽ, sang trọng, thư giãn</ol>
+                            <ol>- Cố vấn dày dặn kinh nghiệm</ol>
+                            <ol>- Sản phẩm chính hãng</ol>
+                        </ul>
+                        <div class="rating-title">
+                            <!--                            <h6>Akash Downey <span>- CEO Deercreative</span></h6>-->
+                        </div>
+                    </div>
+
+                    <!-- Single Testimonial Slide -->
+                    <div class="single-testimonial-slide">
+                        <ul>
+                            <ol>- Sẵn sàng từ 7:30 – 18:00</ol>
+                            <ol>- Không gian rộng 1.000 m2</ol>
+                            <ol>- Kỹ thuật viên lành nghề</ol>
+                            <ol>- Máy móc hiện đại, tiên tiến</ol>
+                            <ol>- Bảo hành tiêu chuẩn</ol>
+                        </ul>
+                        <div class="rating-title">
+                            <!--                            <h6>Downey Sarah <span>- CEO Deercreative</span></h6>-->
+                        </div>
+                    </div>
+
+                    <!-- Single Testimonial Slide -->
+                    <div class="single-testimonial-slide">
+                        <ul>
+                            <ol>- Cam kết bả hành</ol>
+                            <ol>- Đảm bảo tiến độ thi công đúng với cam kết</ol>
+                            <ol>- Thân thiện với con người và môi trường</ol>
+                            <ol>- Thi công an toàn,sạch sẽ</ol>
+                            <ol>- Trang thiết bị hiện đại</ol>
+                        </ul>
+                        <div class="rating-title">
+                            <!--                            <h6>Robert Brown <span>- CEO Deercreative</span></h6>-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Testimonials Area End -->
+
+<!-- Projects Area Start -->
+<section class="roberto-project-area">
+    <!-- Projects Slide -->
+    <div class="projects-slides owl-carousel">
+        <!-- Single Project Slide -->
+        <!-- style="background-image: url(home/img/bg-img/5.jpg);" -->
+        <th:block th:each="news : ${vm.getNewsVMS()}">
+            <div class="single-project-slide active bg-img">
+                <!-- Project Text -->
+                <img th:src="${news.getMainImage()}" alt="" style="height: 800px">
+                <div class="project-content">
+                    <div class="text">
+                        <h6 th:text="${news.getTitle()}"></h6>
+                        <!--                        <h5 th:text="${news.getCreateDate()}"></h5>-->
+                    </div>
+                </div>
+                <!-- Hover Effects -->
+                <div class="hover-effects">
+                    <div class="text">
+                        <h6 th:text="${news.getTitle()}"></h6>
+                        <h5 th:text="${news.getAuthor()}"></h5>
+                        <p th:text="${news.getShortDesc()}"></p>
+                    </div>
+                    <a th:href="${'/news/detail/' + news.getNewsId()}" class="btn project-btn">Xem thêm<i
+                            class="fa fa-long-arrow-right"
+                            aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </th:block>
+    </div>
+</section>
+<!-- Projects Area End -->
+
+<!-- Blog Area Start -->
+<section class="roberto-blog-area section-padding-100-0">
+    <div class="container">
+        <div class="row">
+            <!-- Section Heading -->
+            <div class="col-12">
+                <div class="section-heading text-center wow fadeInUp" data-wow-delay="100ms">
+                    <h6>Phụ tùng</h6>
+                    <h2>Lốp</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <th:block th:each="accessary1 : ${vm.getAccessaryVMS1()}">
+                <!-- Single Post Area -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-post-area mb-100 wow fadeInUp" data-wow-delay="300ms">
+                        <a href="#" class="post-thumbnail"><img th:src="${accessary1.getImage()}" alt=""></a>
+                        <!-- Post Meta -->
+                        <div class="post-meta">
+                            <a href="#" class="post-date" th:text="${accessary1.getPrice()} + ' VNĐ'"></a>
+                            <a href="#" class="post-catagory" th:text="${accessary1.getOrigin()}"></a>
+                        </div>
+                        <!-- Post Title -->
+                        <a href="#" class="post-title" th:text="${accessary1.getName()}"></a>
+                        <p th:text="${accessary1.getDescription()}"></p>
+                    </div>
+                </div>
+            </th:block>
+
+            <div class="col-12 col-lg-3" style="margin-left: 425px; margin-bottom: 30px">
+                <a th:href="${'/accessary/?accessaryTypeId=1'}" class="form-control btn roberto-btn w-100" style="margin-top: -10px">Xem thêm</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <!-- Section Heading -->
+            <div class="col-12">
+                <div class="section-heading text-center wow fadeInUp" data-wow-delay="100ms">
+                    <h6>Phụ tùng</h6>
+                    <h2>Ắc Quy</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <th:block th:each="accessary1 : ${vm.getAccessaryVMS2()}">
+                <!-- Single Post Area -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-post-area mb-100 wow fadeInUp" data-wow-delay="300ms">
+                        <a href="#" class="post-thumbnail"><img th:src="${accessary1.getImage()}" alt=""></a>
+                        <!-- Post Meta -->
+                        <div class="post-meta">
+                            <a href="#" class="post-date" th:text="${accessary1.getPrice()} + ' VNĐ'"></a>
+                            <a href="#" class="post-catagory" th:text="${accessary1.getOrigin()}"></a>
+                        </div>
+                        <!-- Post Title -->
+                        <a href="#" class="post-title" th:text="${accessary1.getName()}"></a>
+                        <p th:text="${accessary1.getDescription()}"></p>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+
+        <div class="col-12 col-lg-3" style="margin-left: 400px; margin-bottom: 30px">
+            <a th:href="${'/accessary/?accessaryTypeId=2'}"  class="form-control btn roberto-btn w-100" style="margin-top: -10px">Xem thêm</a>
+        </div>
+    </div>
+</section>
+<!-- Blog Area End -->
+
+<!-- Call To Action Area Start -->
+<section class="roberto-cta-area">
+    <div class="container">
+        <div class="cta-content bg-img bg-overlay jarallax" style="background-image: url(home/img/bg-img/1.jpg);">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-7">
+                    <div class="cta-text mb-50">
+                        <h2>Contact us now!</h2>
+                        <h6>Contact (+12) 345-678-9999 to book directly or for advice</h6>
+                    </div>
+                </div>
+                <div class="col-12 col-md-5 text-right">
+                    <a href="#" class="btn roberto-btn mb-50">Contact Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Call To Action Area End -->
+
+<!-- Partner Area Start -->
+<div class="partner-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="partner-logo-content d-flex align-items-center justify-content-between wow fadeInUp"
+                     data-wow-delay="300ms">
+                    <!-- Single Partner Logo -->
+                    <a href="#" class="partner-logo"><img src="home/img/core-img/p1.png" alt=""></a>
+                    <!-- Single Partner Logo -->
+                    <a href="#" class="partner-logo"><img src="home/img/core-img/p2.png" alt=""></a>
+                    <!-- Single Partner Logo -->
+                    <a href="#" class="partner-logo"><img src="home/img/core-img/p3.png" alt=""></a>
+                    <!-- Single Partner Logo -->
+                    <a href="#" class="partner-logo"><img src="home/img/core-img/p4.png" alt=""></a>
+                    <!-- Single Partner Logo -->
+                    <a href="#" class="partner-logo"><img src="home/img/core-img/p5.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragment/footer :: footer_info"></div>
+
+<script th:src="@{/home/js/jquery.min.js}"></script>
+<!-- Popper -->
+<script th:src="@{/home/js/popper.min.js}"></script>
+<!-- Bootstrap -->
+<script th:src="@{/home/js/bootstrap.min.js}"></script>
+<!-- All Plugins -->
+<script th:src="@{/home/js/roberto.bundle.js}"></script>
+<!-- Active -->
+<script th:src="@{/home/js/default-assets/active.js}"></script>
+</body>
+</html>
