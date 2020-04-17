@@ -3,11 +3,15 @@ package application.controller.web;
 import application.constant.LogoConstant;
 import application.data.entity.AccessaryType;
 import application.data.entity.User;
+import application.data.entity.Vehicle;
+import application.data.repository.VehicleRepository;
 import application.data.service.AccessaryTypeService;
 import application.data.service.UserService;
+import application.data.service.VehicleService;
 import application.model.viewmodel.accessaryType.AccessaryTypeVM;
 import application.model.viewmodel.common.LayoutHeaderAdminVM;
 import application.model.viewmodel.common.LayoutHeaderVM;
+import application.model.viewmodel.vehicle.VehicleVM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -23,10 +27,26 @@ public class BaseController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private VehicleService vehicleService;
+
+    @Autowired
+    private VehicleRepository vehicleRepository;
+
     public LayoutHeaderVM getLayoutHeaderVM() {
         LayoutHeaderVM vm = new LayoutHeaderVM();
 
+        List<VehicleVM> vehicleVMList = new ArrayList<>();
+        for(Vehicle vehicle : vehicleRepository.findAll()) {
+            VehicleVM vehicleVM = new VehicleVM();
+            vehicleVM.setId(vehicle.getId());
+            vehicleVM.setVehicleName(vehicle.getVehicleName());
+
+            vehicleVMList.add(vehicleVM);
+        }
+
         vm.setLogo(LogoConstant.logo);
+        vm.setVehicleVMList(vehicleVMList);
         return vm;
     }
 

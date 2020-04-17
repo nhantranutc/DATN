@@ -9,7 +9,7 @@
 <body>
 <div th:replace="fragment/header :: header_info (vm = ${vm.getLayoutHeaderVM()}, vm1 = ${vm.getAccessaryTypeVMS()})"></div>
 
-<section class="roberto-about-area section-padding-100-0">
+<section style="z-index: 1" class="roberto-about-area section-padding-100-0">
     <div class="container mt-100">
         <div class="row align-items-center">
             <div class="col-12 col-lg-6">
@@ -368,6 +368,10 @@
 
 <div th:replace="fragment/footer :: footer_info"></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+
 <script th:src="@{/home/js/jquery.min.js}"></script>
 <!-- Popper -->
 <script th:src="@{/home/js/popper.min.js}"></script>
@@ -377,5 +381,7 @@
 <script th:src="@{/home/js/roberto.bundle.js}"></script>
 <!-- Active -->
 <script th:src="@{/home/js/default-assets/active.js}"></script>
+
+<script th:src="@{/js/book.js}"></script>
 </body>
 </html>
