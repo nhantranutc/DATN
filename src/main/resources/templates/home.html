@@ -16,16 +16,13 @@
                 <!-- Section Heading -->
                 <div class="section-heading wow fadeInUp" data-wow-delay="100ms">
                     <h6>Giới thiệu</h6>
-                    <h3>Chào mừng bạn đến với : Trung tâm dịch vụ-ATOM AUTO SERVICES</h3>
+                    <h3>Chào mừng bạn đến với : Trung tâm dịch vụ-MONA MEDIA CARS</h3>
                 </div>
                 <div class="about-us-content mb-100" style="margin-top: -40px">
-                    <h5 class="wow fadeInUp" data-wow-delay="300ms">ATOM AUTO SERVICES là trung tâm dịch vụ bảo dưỡng
-                        ôtô cao cấp,
-                        đáp ứng hệ thống tiêu chuẩn toàn cầu của một mô hình B-select thuộc tập đoàn BRIDGESTONE .ATOM
-                        Auto
-                        Services phục vụ toàn diện nhu cầu về lốp xe,
-                        ắc quy, bảo dưỡng và làm đẹp cho các dòng xe cá nhân, xe gia đình, xe du lịch.</h5>
-                    <a href="#ds" class="form-control btn roberto-btn w-100" style="margin-top: -10px">Xem thêm</a>
+                    <h5 class="wow fadeInUp" data-wow-delay="300ms">
+                        Mona Media Cars được thành lập tháng 10/2000, Mona Media Cars đã quy tụ đội ngũ kỹ sư, kỹ thuật viên xuất thân từ Đại học Bách Khoa, Đại học Sư Phạm Kỹ Thuật, Đại học Giao Thông Vận Tải, Cao đẳng Cao Thắng….đã nhiều năm tham gia vào các hoạt động sản xuất kinh doanh...
+                    </h5>
+                    <a th:href="${'/about'}" class="form-control btn roberto-btn w-100" style="margin-top: 10px">Xem thêm</a>
                 </div>
             </div>
 
@@ -34,19 +31,15 @@
                     <div class="row no-gutters">
                         <div class="col-6">
                             <div class="single-thumb">
-                                <img src="https://baohaauto.vn/wp-content/uploads/cop-noc-cho-range-rover-evoque-hang-nhap-chinh-hang-7.jpg"
-                                     alt="">
+                                <img src="http://mauweb.monamedia.net/cardinal/wp-content/uploads/2019/01/unnamed.jpg" alt="">
                             </div>
                             <div class="single-thumb">
-                                <img src="https://thanhphongauto.com/wp-content/uploads/2019/09/khi-bao-duong-nhua-xe-oto-01.jpg"
-                                     alt="">
+                                <img src="https://thanhphongauto.com/wp-content/uploads/2019/09/khi-bao-duong-nhua-xe-oto-01.jpg"alt="">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="single-thumb">
-                                <img style="height: 400px"
-                                     src="https://media1.nguoiduatin.vn/thumb_x600x600/media/cao-thu-hang/2020/01/09/nhung-luu0y-khi-bao-duong-o-to-11.jpg"
-                                     alt="">
+                                <img style="height: 400px" src="http://mauweb.monamedia.net/cardinal/wp-content/uploads/2019/01/car-repair-guy-png.png" alt="">
                             </div>
                         </div>
                     </div>
@@ -62,32 +55,26 @@
                 <div class="service-content d-flex align-items-center justify-content-between">
                     <!-- Single Service Area -->
                     <div class="single-service--area mb-100 wow fadeInUp" data-wow-delay="100ms">
-                        <img src="home/img/core-img/icon-1.png" alt="">
-                        <h5>Transportion</h5>
+                        <img src="https://pngimage.net/wp-content/uploads/2018/06/icon-clock-png-5.png" alt="">
+                        <h5>Không phải đợi lâu</h5>
                     </div>
 
                     <!-- Single Service Area -->
                     <div class="single-service--area mb-100 wow fadeInUp" data-wow-delay="300ms">
-                        <img src="home/img/core-img/icon-2.png" alt="">
-                        <h5>Reiseservice</h5>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Cifr%C3%A3o_symbol.svg/600px-Cifr%C3%A3o_symbol.svg.png" alt="">
+                        <h5>Cam kết đúng giá</h5>
                     </div>
 
                     <!-- Single Service Area -->
                     <div class="single-service--area mb-100 wow fadeInUp" data-wow-delay="500ms">
-                        <img src="home/img/core-img/icon-3.png" alt="">
-                        <h5>Spa Relaxtion</h5>
-                    </div>
-
-                    <!-- Single Service Area -->
-                    <div class="single-service--area mb-100 wow fadeInUp" data-wow-delay="700ms">
-                        <img src="home/img/core-img/icon-4.png" alt="">
-                        <h5>Restaurant</h5>
+                        <img src="https://image.flaticon.com/icons/png/512/22/22903.png" alt="">
+                        <h5>Đặt hẹn online</h5>
                     </div>
 
                     <!-- Single Service Area -->
                     <div class="single-service--area mb-100 wow fadeInUp" data-wow-delay="900ms">
-                        <img src="home/img/core-img/icon-1.png" alt="">
-                        <h5>Bar &amp; Drink</h5>
+                        <img src="https://www.pinclipart.com/picdir/big/70-705005_clipart-shield-security-shield-public-domain-shield-icon.png" alt="">
+                        <h5>Bảo hành lâu dài</h5>
                     </div>
                 </div>
             </div>
@@ -111,14 +98,13 @@
 
                 <!-- Content -->
                 <div class="room-content">
-                    <h2 data-animation="fadeInUp" data-delay="100ms" th:text="${services.getServiceName()}"></h2>
+                    <h3 data-animation="fadeInUp" data-delay="100ms" th:text="${services.getServiceName()}"></h3>
                     <h3 data-animation="fadeInUp" data-delay="300ms">400$ <span>/ Day</span></h3>
                     <ul class="room-feature" data-animation="fadeInUp" data-delay="500ms">
-                        <li><span><i class="fa fa-check"></i> Description</span> <span
-                                th:text="${services.getDescription()}"></span></li>
-                        <!--                        <li><span><i class="fa fa-check"></i> Capacity</span> <span>: Max persion 5</span></li>-->
-                        <!--                        <li><span><i class="fa fa-check"></i> Bed</span> <span>: King Beds</span></li>-->
-                        <!--                        <li><span><i class="fa fa-check"></i> Services</span> <span>: Wifi, Television, Bathroom</span></li>-->
+                        <li>
+                            <span><i class="fa fa-check"></i> Mô tả</span>
+                            <span th:text="${services.getDescription()}"></span>
+                        </li>
                     </ul>
                     <a style="margin-left: 350px" th:href="${'/services/detail/' + services.getId()}"
                        class="btn roberto-btn mt-30"
@@ -136,15 +122,10 @@
         <div class="row align-items-center">
             <div class="col-12 col-md-6">
                 <div class="testimonial-thumbnail owl-carousel mb-100">
-                    <img src="https://www.5giay.vn/data/node-images/158_e1c088d2ae7778d078b79450b2cf2df1.jpg" alt="">
-                    <img style="height: 450px; margin-top: 30px"
-                         src="https://lh3.googleusercontent.com/proxy/lo3gPeWIWfSIe5t7bDT3kgfFs3lJQ6CuvxzNoCa-RXGGgmlVS0fHQ76GsOPX9fa-mJsNXeAJ1LNdm0mhXnXPCu20RmoAT2OMnaAQzqEoXEOK9SRCHsz1RFLginUzI7ii9Mc9wSSILKY1_KGCMofwSqjJzAk"
-                         alt="">
-                    <img style="height: 450px; margin-top: 30px"
-                         src="https://maynenkhipro.vn/uploads/3677_cau_nang_1_tru_am_nen_ts_4000c.jpg" alt="">
-                    <img style="height: 450px; margin-top: 30px"
-                         src="https://img.alicdn.com/imgextra/i3/1617837827/TB2Ac8CoyAnBKNjSZFvXXaTKXXa_!!1617837827.jpg"
-                         alt="">
+                    <img src="http://mauweb.monamedia.net/cardinal/wp-content/uploads/2019/01/img3.jpg" alt="">
+                    <img style="height: 450px; margin-top: 30px" src="http://mauweb.monamedia.net/cardinal/wp-content/uploads/2019/01/img1.jpg" alt="">
+                    <img style="height: 450px; margin-top: 30px" src="http://mauweb.monamedia.net/cardinal/wp-content/uploads/2019/01/IMG2.jpg" alt="">
+                    <img style="height: 450px; margin-top: 30px" src="http://mauweb.monamedia.net/cardinal/wp-content/uploads/2019/01/unnamed.jpg" alt="">
                 </div>
             </div>
 
@@ -152,7 +133,7 @@
                 <!-- Section Heading -->
                 <div class="section-heading">
                     <h6>Tiêu chí</h6>
-                    <h2>Phục vụ khách hàng với chất lượng tuyệt hảo!</h2>
+                    <h2 style="font-family: serif;">Phục vụ khách hàng với chất lượng tuyệt hảo!</h2>
                 </div>
                 <!-- Testimonial Slide -->
                 <div class="testimonial-slides owl-carousel mb-100">
@@ -167,7 +148,6 @@
                         </div>
                     </div>
 
-                    <!-- Single Testimonial Slide -->
                     <div class="single-testimonial-slide">
                         <!--                        <h5><p>Phục vụ 7 ngày/ tuần</p><p>Phòng chờ 5 sao</p></h5>-->
                         <ul>
@@ -182,7 +162,6 @@
                         </div>
                     </div>
 
-                    <!-- Single Testimonial Slide -->
                     <div class="single-testimonial-slide">
                         <ul>
                             <ol>- Sẵn sàng từ 7:30 – 18:00</ol>
@@ -196,7 +175,6 @@
                         </div>
                     </div>
 
-                    <!-- Single Testimonial Slide -->
                     <div class="single-testimonial-slide">
                         <ul>
                             <ol>- Cam kết bả hành</ol>
@@ -209,7 +187,6 @@
                             <!--                            <h6>Robert Brown <span>- CEO Deercreative</span></h6>-->
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -330,12 +307,12 @@
             <div class="row align-items-center">
                 <div class="col-12 col-md-7">
                     <div class="cta-text mb-50">
-                        <h2>Contact us now!</h2>
-                        <h6>Contact (+12) 345-678-9999 to book directly or for advice</h6>
+                        <h2>Liên hệ ngay!</h2>
+                        <h6>Gọi ngay (+12) 345-678-9999 để đặt trực tiếp hoặc để được tư vấn</h6>
                     </div>
                 </div>
                 <div class="col-12 col-md-5 text-right">
-                    <a href="#" class="btn roberto-btn mb-50">Contact Now</a>
+                    <a href="#" class="btn roberto-btn mb-50">Liên Hệ</a>
                 </div>
             </div>
         </div>
@@ -351,15 +328,15 @@
                 <div class="partner-logo-content d-flex align-items-center justify-content-between wow fadeInUp"
                      data-wow-delay="300ms">
                     <!-- Single Partner Logo -->
-                    <a href="#" class="partner-logo"><img src="home/img/core-img/p1.png" alt=""></a>
+                    <a class="partner-logo"><img src="http://mauweb.monamedia.net/cardinal/wp-content/uploads/2019/01/FERRARI.png" alt=""></a>
                     <!-- Single Partner Logo -->
-                    <a href="#" class="partner-logo"><img src="home/img/core-img/p2.png" alt=""></a>
+                    <a class="partner-logo"><img src="http://mauweb.monamedia.net/cardinal/wp-content/uploads/2019/01/JEEP.png" alt=""></a>
                     <!-- Single Partner Logo -->
-                    <a href="#" class="partner-logo"><img src="home/img/core-img/p3.png" alt=""></a>
+                    <a class="partner-logo"><img src="http://mauweb.monamedia.net/cardinal/wp-content/uploads/2019/01/MAZDA.png" alt=""></a>
                     <!-- Single Partner Logo -->
-                    <a href="#" class="partner-logo"><img src="home/img/core-img/p4.png" alt=""></a>
+                    <a class="partner-logo"><img src="http://mauweb.monamedia.net/cardinal/wp-content/uploads/2019/01/MERCEDES.png" alt=""></a>
                     <!-- Single Partner Logo -->
-                    <a href="#" class="partner-logo"><img src="home/img/core-img/p5.png" alt=""></a>
+                    <a class="partner-logo"><img src="http://mauweb.monamedia.net/cardinal/wp-content/uploads/2019/01/ROLLE-ROYCE.png" alt=""></a>
                 </div>
             </div>
         </div>

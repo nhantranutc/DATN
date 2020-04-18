@@ -1,5 +1,6 @@
 package application.controller.web;
 
+import application.constant.FormatDate;
 import application.constant.FormatPrice;
 import application.constant.RoleIdConstant;
 import application.data.entity.*;
@@ -7,8 +8,13 @@ import application.data.service.*;
 import application.model.viewmodel.accessary.AccessaryVM;
 import application.model.viewmodel.accessaryType.AccessaryTypeVM;
 import application.model.viewmodel.admin.HomeAdminVM;
+import application.model.viewmodel.book.BookVM;
+import application.model.viewmodel.chart.ChartDataVM;
+import application.model.viewmodel.chart.ChartVM;
 import application.model.viewmodel.news.NewsVM;
+import application.model.viewmodel.role.RoleVM;
 import application.model.viewmodel.services.ServicesVM;
+import application.model.viewmodel.user.UserVM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +39,9 @@ public class AdminController extends BaseController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RoleService roleService;
 
     @Autowired
     private UserRoleService userRoleService;
@@ -47,6 +57,9 @@ public class AdminController extends BaseController {
 
     @Autowired
     private NewsService newsService;
+
+    @Autowired
+    private AppointmentBookSevice appointmentBookSevice;
 
     @GetMapping("")
     public String home(Model model,
@@ -219,5 +232,195 @@ public class AdminController extends BaseController {
         model.addAttribute("page", newsPage);
 
         return "/admin/news";
+    }
+
+    @GetMapping("accessaryType")
+    public String accessaryType(Model model, HttpServletRequest request,
+                       @RequestParam(name = "page", required = false, defaultValue = "0") Integer page,
+                       @RequestParam(name = "size", required = false, defaultValue = "5") Integer size) {
+        HomeAdminVM vm =new HomeAdminVM();
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.findUserByUsername(username);
+
+        UserRole userRole = userRoleService.findUserRolebyRoleIdAndUserId(RoleIdConstant.Role_Admin, user.getId());
+        if(userRole != null) {
+            vm.setRoleId(1);
+        }
+
+        Pageable pageable =new PageRequest(page, size);
+        Page<AccessaryType> accessaryTypePage= accessaryTypeService.getListAllAccessaryTypeByContaining(pageable);
+        List<AccessaryTypeVM> accessaryTypeVMList = new ArrayList<>();
+        for(AccessaryType accessaryType : accessaryTypePage.getContent() ) {
+            AccessaryTypeVM accessaryTypeVM = new AccessaryTypeVM();
+            accessaryTypeVM.setId(accessaryType.getId());
+            accessaryTypeVM.setName(accessaryType.getName());
+            accessaryTypeVM.setDesc(accessaryType.getDescription());
+
+            accessaryTypeVMList.add(accessaryTypeVM);
+        }
+
+        vm.setLayoutHeaderAdminVM(super.getLayoutHeaderAdminVM(request));
+        vm.setAccessaryTypeVMList(accessaryTypeVMList);
+
+        model.addAttribute("vm", vm);
+        model.addAttribute("page", accessaryTypePage);
+
+        return "/admin/accessary-type";
+    }
+
+    @GetMapping("book")
+    public String book(Model model, HttpServletRequest request,
+                                @Valid @ModelAttribute("appointmentDate") BookVM appointmentDate,
+                                @RequestParam(name = "page", required = false, defaultValue = "0") Integer page,
+                                @RequestParam(name = "size", required = false, defaultValue = "5") Integer size) throws ParseException {
+        HomeAdminVM vm =new HomeAdminVM();
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.findUserByUsername(username);
+
+        UserRole userRole = userRoleService.findUserRolebyRoleIdAndUserId(RoleIdConstant.Role_Admin, user.getId());
+        if(userRole != null) {
+            vm.setRoleId(1);
+        }
+
+        Pageable pageable =new PageRequest(page, size);
+        Page<AppointmentBook> appointmentBookPage = null;
+        if(appointmentDate.getAppointmentDate() != null) {
+            appointmentBookPage = appointmentBookSevice.getListAllAppointmentBookByCreateDateWithPageable(pageable, FormatDate.formatDate(appointmentDate.getAppointmentDate().trim()));
+        } else {
+            appointmentBookPage = appointmentBookSevice.getListAllAppointmentBookByCreateDateWithPageable(pageable, null);
+        }
+
+        List<BookVM> bookVMList = new ArrayList<>();
+        for(AppointmentBook appointmentBook : appointmentBookPage.getContent()) {
+            BookVM bookVM = new BookVM();
+            bookVM.setId(appointmentBook.getId());
+            bookVM.setFullName(appointmentBook.getFullName());
+            bookVM.setPhoneNumber(appointmentBook.getPhoneNumber());
+            bookVM.setVehicleBrand(appointmentBook.getVehicleBrand());
+            bookVM.setContent(appointmentBook.getContent());
+            bookVM.setAppointmentDate(FormatDate.formatDate(appointmentBook.getAppointmentDate()));
+
+            bookVMList.add(bookVM);
+        }
+
+        vm.setLayoutHeaderAdminVM(super.getLayoutHeaderAdminVM(request));
+        vm.setBookVMList(bookVMList);
+
+        model.addAttribute("vm", vm);
+        model.addAttribute("page", appointmentBookPage);
+
+        return "/admin/book";
+    }
+
+    @GetMapping("/user")
+    public String user(Model model, HttpServletRequest request,
+                       @RequestParam(name = "roleId", required = false) Integer roleId) {
+        HomeAdminVM vm =new HomeAdminVM();
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.findUserByUsername(username);
+
+        UserRole userRole = userRoleService.findUserRolebyRoleIdAndUserId(RoleIdConstant.Role_Admin, user.getId());
+        if(userRole != null) {
+            vm.setRoleId(1);
+        }
+
+        List<UserVM> userVMList = new ArrayList<>();
+        if(roleId != null ){
+            List<UserRole> userRoleList = userRoleService.findUserRolebyRoleId(roleId);
+            for(UserRole userRole1 : userRoleList) {
+                User user1 = userService.findOne(userRole1.getUserId());
+                UserVM userVM = new UserVM();
+                userVM.setId(user1.getId());
+                userVM.setUserName(user1.getUserName());
+                userVM.setFullName(user1.getFullName());
+                userVM.setAddressName(user1.getAddressName());
+                userVM.setGender(user1.getGender());
+                userVM.setPhoneNumber(user1.getPhoneNumber());
+                userVM.setEmail(user1.getEmail());
+
+                userVMList.add(userVM);
+            }
+
+            List<RoleVM> roleVMList = new ArrayList<>();
+            for(Role role : roleService.getListAllRole()) {
+                RoleVM roleVM = new RoleVM();
+                roleVM.setId(role.getId());
+                if(role.getName().equals("ROLE_ADMIN")) {
+                    roleVM.setName("Quản trị viên");
+                }
+                if(role.getName().equals("ROLE_USER")) {
+                    roleVM.setName("Nhân viên thu ngân");
+                }
+
+                roleVMList.add(roleVM);
+            }
+            vm.setLayoutHeaderAdminVM(super.getLayoutHeaderAdminVM(request));
+            vm.setUserVMList(userVMList);
+            vm.setRoleVMList(roleVMList);
+
+            model.addAttribute("vm", vm);
+
+            return "/admin/user";
+        } else {
+            for(User user1 : userService.getListAllUsers()) {
+                UserVM userVM = new UserVM();
+                userVM.setId(user1.getId());
+                userVM.setUserName(user1.getUserName());
+                userVM.setFullName(user1.getFullName());
+                userVM.setAddressName(user1.getAddressName());
+                userVM.setGender(user1.getGender());
+                userVM.setPhoneNumber(user1.getPhoneNumber());
+                userVM.setEmail(user1.getEmail());
+
+                userVMList.add(userVM);
+            }
+
+            List<RoleVM> roleVMList = new ArrayList<>();
+            for(Role role : roleService.getListAllRole()) {
+                RoleVM roleVM = new RoleVM();
+                roleVM.setId(role.getId());
+                if(role.getName().equals("ROLE_ADMIN")) {
+                    roleVM.setName("Quản trị viên");
+                }
+                if(role.getName().equals("ROLE_USER")) {
+                    roleVM.setName("Nhân viên thu ngân");
+                }
+
+                roleVMList.add(roleVM);
+            }
+            vm.setLayoutHeaderAdminVM(super.getLayoutHeaderAdminVM(request));
+            vm.setUserVMList(userVMList);
+            vm.setRoleVMList(roleVMList);
+
+            model.addAttribute("vm", vm);
+
+            return "/admin/user";
+        }
+    }
+
+    @GetMapping("/chart")
+    public String chart(Model model, HttpServletRequest request) {
+
+        ChartVM vm = new ChartVM();
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.findUserByUsername(username);
+
+        UserRole userRole = userRoleService.findUserRolebyRoleIdAndUserId(RoleIdConstant.Role_Admin, user.getId());
+        if(userRole != null) {
+            vm.setRoleId(1);
+        }
+
+        List<ChartDataVM> chartAccessaryTypeVMS = accessaryTypeService.getAllAccessaryType();
+
+        vm.setLayoutHeaderAdminVM(super.getLayoutHeaderAdminVM(request));
+        vm.setChartAccessaryTypeVMS(chartAccessaryTypeVMS);
+
+        model.addAttribute("vm", vm);
+
+        return "admin/chart";
     }
 }

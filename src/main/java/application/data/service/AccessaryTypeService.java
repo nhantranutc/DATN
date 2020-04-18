@@ -2,9 +2,12 @@ package application.data.service;
 
 import application.data.entity.AccessaryType;
 import application.data.repository.AccessaryTypeRepository;
+import application.model.viewmodel.chart.ChartDataVM;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,6 +60,14 @@ public class AccessaryTypeService {
             logger.error(e.getMessage());
             return new ArrayList<>();
         }
+    }
+
+    public Page<AccessaryType> getListAllAccessaryTypeByContaining(Pageable pageable) {
+        return accessaryTypeRepository.getListAllAccessaryTypeByContaining(pageable);
+    }
+
+    public List<ChartDataVM> getAllAccessaryType() {
+        return accessaryTypeRepository.getAllAccessaryType();
     }
 
 }

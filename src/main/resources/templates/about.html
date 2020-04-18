@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+    <link rel="stylesheet" th:href="@{/home/style.css}">
+</head>
+<body>
+<div th:replace="fragment/header :: header_info (vm = ${vm.getLayoutHeaderVM()}, vm1 = ${vm.getAccessaryTypeVMS()})"></div>
+
+<section class="roberto-about-us-area section-padding-100-0">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6">
+                <div style="margin-top: -40px" class="about-thumbnail pr-lg-5 mb-100 wow fadeInUp" data-wow-delay="100ms">
+                    <img src="http://mauweb.monamedia.net/cardinal/wp-content/uploads/2019/01/car-1751750_1280.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <!-- Section Heading -->
+                <div class="section-heading wow fadeInUp" data-wow-delay="300ms">
+                    <h6>20 năm kinh nghiệm</h6>
+                    <h5>Trung tâm sửa chữa, bảo dưỡng ôtô chuyên nghiệp</h5>
+                </div>
+                <div class="about-content mb-100 wow fadeInUp" data-wow-delay="500ms">
+                    <p>Mona Media Cars được thành lập tháng 10/2000, Mona Media Cars đã quy tụ đội ngũ kỹ sư, kỹ thuật viên xuất thân từ Đại học Bách Khoa, Đại học Sư Phạm Kỹ Thuật, Đại học Giao Thông Vận Tải, Cao đẳng Cao Thắng….đã nhiều năm tham gia vào các hoạt động sản xuất kinh doanh, hậu mãi của các liên doanh lắp ráp ô tô tại Việt Nam. Tập thể nhân viên và lãnh đạo Mona Media Cars luôn theo sát tình hình thị trường ô tô, phấn đấu học hỏi và hoàn thiện mình từng bước nâng cao các kỹ năng cần thiết nhằm phục vụ quý khách ngày một tốt hơn, hoàn thiện hơn.</p>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-12">
+                <div style="margin-top: -40px" class="about-content mb-100 wow fadeInUp" data-wow-delay="500ms">
+                    <p>Sau 20 năm trên mặt bằng diện tích 450m2 Mona Media Cars đã từng bước hoàn thiện và trang bị đầy đủ các thiết bị tiêu chuẩn, chuyên dùng để phục vụ sửa chữa cho tất cả các loại xe ô tô từ phổ thông đến cao cấp như Lexus, Acuara, BMW, Mercedes,….Sản phẩm và dịch vụ của chúng tôi bao gồm bảo dưỡng, sửa chữa, đồng sơn xe ô tô, các dịch vụ chăm sóc xe, cung cấp phụ tùng chính hãng và thay thế, nhận ký gửi, mua bán xe.</p>
+                    <p>Chúng tôi luôn luôn cố gắng để trở thành nơi cung cấp hàng đầu các dịch vụ “Chăm sóc xe toàn diện” cho quý khách hàng, là gara có thương hiệu về tất cả các dịch vụ liên quan đến bảo trì, bảo dưỡng, sửa chữa ô tô. Nơi đây cũng sẽ như một spa hiện đại trong lĩnh vực làm đẹp, làm mới với những phụ tùng, thiết bị chính hãng uy tín nhất trên thị trường. Để làm được điều đó, chúng tôi lắng nghe để hiểu nhu cầu của bạn, đưa ra các giải pháp hiệu quả và đi cùng bạn cho một kết quả tốt hơn hàng ngày.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:replace="fragment/footer :: footer_info"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+
+<script th:src="@{/home/js/jquery.min.js}"></script>
+<!-- Popper -->
+<script th:src="@{/home/js/popper.min.js}"></script>
+<!-- Bootstrap -->
+<script th:src="@{/home/js/bootstrap.min.js}"></script>
+<!-- All Plugins -->
+<script th:src="@{/home/js/roberto.bundle.js}"></script>
+<!-- Active -->
+<script th:src="@{/home/js/default-assets/active.js}"></script>
+<script th:src="@{/js/book.js}"></script>
+</body>
+</html>

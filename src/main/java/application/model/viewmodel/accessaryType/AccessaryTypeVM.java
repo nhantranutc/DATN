@@ -8,4 +8,5 @@ import lombok.Setter;
 public class AccessaryTypeVM {
     private int id;
     private String name;
+    private String desc;
 }

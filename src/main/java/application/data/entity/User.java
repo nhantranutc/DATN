@@ -26,7 +26,7 @@ public class User {
     private String fullName;
 
     @Column(name = "address_name")
-    private int addressName;
+    private String addressName;
 
     @Column(name = "birthday")
     private Date birthday;
@@ -44,10 +44,10 @@ public class User {
     private String avatar;
 
     @Column(name = "user_active")
-    private boolean userActive;
+    private int userActive;
 
     @Column(name = "is_delete")
-    private boolean isDelete;
+    private int isDelete;
 
     @Transient
     private String password;

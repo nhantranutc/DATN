@@ -40,7 +40,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" th:href="${'/admin'}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -63,6 +63,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Danh sách quản lý:</h6>
                     <a class="collapse-item" th:href="${'/admin/accessary'}">Phụ Tùng</a>
+                    <a class="collapse-item" th:href="${'/admin/accessaryType'}">Loại phụ tùng</a>
                     <a class="collapse-item" th:href="${'/admin/service'}">Dịch Vụ</a>
                     <a class="collapse-item" th:href="${'/admin/news'}">Tin Tức</a>
                 </div>
@@ -70,7 +71,7 @@
         </li>
 
         <li class="nav-item" th:if="${vm.getRoleId() == 1}">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" th:href="${'/admin/user'}">
                 <i class="fas fa-fw fa-user"></i>
                 <span>Nhân Viên</span></a>
         </li>
@@ -88,14 +89,14 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" th:href="${'/admin/book'}">
                 <i class="fas fa-fw fa-clock"></i>
                 <span>Lịch Hẹn</span></a>
         </li>
 
         <!-- Nav Item - Charts -->
         <li class="nav-item" th:if="${vm.getRoleId() == 1}">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" th:href="${'/admin/chart'}">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Biểu Đồ</span></a>
         </li>
@@ -308,7 +309,6 @@
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
-
 <!-- Bootstrap core JavaScript-->
 <script th:src="@{/admin/vendor/jquery/jquery.min.js}"></script>
 <script th:src="@{/admin/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
@@ -325,7 +325,6 @@
 <!-- Page level custom scripts -->
 <script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>
 <script th:src="@{/admin/js/demo/chart-pie-demo.js}"></script>
-
 </body>
 
 </html>

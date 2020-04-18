@@ -93,17 +93,20 @@
                                                                                        +(#httpServletRequest.getParameter('page')==null?'':('&page='+#httpServletRequest.getParameter('page')))
                                                                                        +(#httpServletRequest.getParameter('size')==null?'':('&size='+#httpServletRequest.getParameter('size')))
                                                                                        +('&lessPrice=1000000')
+                                                                                       +(#httpServletRequest.getParameter('sortByPrice')==null?'':('&sortByPrice='+#httpServletRequest.getParameter('sortByPrice')))
                                                                                        +(#httpServletRequest.getParameter('name')==null?'':('&name='+#httpServletRequest.getParameter('name')))}">Dưới 1 triệu</a>
                             <a style="border-radius: 30px; margin-bottom: 10px; padding-left: 30px; margin-left: 200px; margin-top: -75px" class="btn roberto-btn w-100" th:href="${'?'+(#httpServletRequest.getParameter('accessaryTypeId')==null?'':('&accessaryTypeId='+#httpServletRequest.getParameter('accessaryTypeId')))
                                                                                        +(#httpServletRequest.getParameter('page')==null?'':('&page='+#httpServletRequest.getParameter('page')))
                                                                                        +(#httpServletRequest.getParameter('size')==null?'':('&size='+#httpServletRequest.getParameter('size')))
                                                                                        +('&startPrice=1000000')
                                                                                        +('&endPrice=2000000')
+                                                                                       +(#httpServletRequest.getParameter('sortByPrice')==null?'':('&sortByPrice='+#httpServletRequest.getParameter('sortByPrice')))
                                                                                        +(#httpServletRequest.getParameter('name')==null?'':('&name='+#httpServletRequest.getParameter('name')))}">Từ 1-2 triệu</a>
                             <a style="border-radius: 30px; padding-left: 27px; margin-left: 100px; " class="btn roberto-btn w-100" th:href="${'?'+(#httpServletRequest.getParameter('accessaryTypeId')==null?'':('&accessaryTypeId='+#httpServletRequest.getParameter('accessaryTypeId')))
                                                                                        +(#httpServletRequest.getParameter('page')==null?'':('&page='+#httpServletRequest.getParameter('page')))
                                                                                        +(#httpServletRequest.getParameter('size')==null?'':('&size='+#httpServletRequest.getParameter('size')))
                                                                                        +('&greatPrice=2000000')
+                                                                                       +(#httpServletRequest.getParameter('sortByPrice')==null?'':('&sortByPrice='+#httpServletRequest.getParameter('sortByPrice')))
                                                                                        +(#httpServletRequest.getParameter('name')==null?'':('&name='+#httpServletRequest.getParameter('name')))}">Trên 2 triệu</a>
                         </div>
                     </form>

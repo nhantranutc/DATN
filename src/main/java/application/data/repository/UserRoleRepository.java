@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 public interface UserRoleRepository extends JpaRepository<UserRole, Integer> {
 
     @Transactional(readOnly = true)
@@ -14,4 +16,7 @@ public interface UserRoleRepository extends JpaRepository<UserRole, Integer> {
 
     @Query("select u from dbo_user_role u where u.roleId = :roleId and u.userId = :userId")
     UserRole findUserRolebyRoleIdAndUserId(@Param("roleId") int roleId, @Param("userId") int userId);
+
+    @Query("select u from dbo_user_role u where u.roleId = :roleId")
+    List<UserRole> findUserRolebyRoleId(@Param("roleId") int roleId);
 }
