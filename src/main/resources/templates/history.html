@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>History</title>
+    <link rel="stylesheet" th:href="@{/home/style.css}">
+</head>
+<body>
+<div th:replace="fragment/header :: header_info (vm = ${vm.getLayoutHeaderVM()}, vm1 = ${vm.getAccessaryTypeVMS()})"></div>
+
+<section style="margin-bottom: 40px;" class="roberto-about-us-area section-padding-100-0">
+    <div class="container">
+        <div class="row align-items-center">
+            <b style="margin-bottom: 20px" th:text="'Tổng số hóa đơn của bạn : ' + ${vm.getOrderVMList().size()} + ' (đơn)'"></b>
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th style="text-align: center">STT</th>
+                    <th style="text-align: center">Tên Khách Hàng</th>
+                    <th style="text-align: center">Số Điện Thoại</th>
+                    <th style="text-align: center">Địa Chỉ</th>
+                    <th style="text-align: center">Email</th>
+                    <th style="text-align: center">Tổng Giá</th>
+                    <th style="text-align: center">Ngày Tạo</th>
+                    <th style="text-align: center">Chi Tiết</th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="item, iter : ${vm.getOrderVMList()}">
+                    <tr>
+                        <td style="text-align: center" th:text="${ iter.index + 1 }" ></td>
+                        <td style="text-align: center" th:text="${item.getCustomerName()}"></td>
+                        <td style="text-align: center" th:text="${item.getPhoneNumber()}"></td>
+                        <td style="text-align: center" th:text="${item.getAddress()}"></td>
+                        <td style="text-align: center" th:text="${item.getEmail()}"></td>
+                        <td style="text-align: center" th:text="${item.getPrice()}  + ' VNĐ'"></td>
+                        <td style="text-align: center" th:text="${item.getCreatedDate()}"></td>
+                        <td style="text-align: center" >
+                            <a th:href="${'/history/detail/' + item.getId()}" style="color: blue" >
+                                <i class="fa fa-info-circle"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+    </div>
+</section>
+
+<div th:replace="fragment/footer :: footer_info"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+
+<script th:src="@{/home/js/jquery.min.js}"></script>
+<!-- Popper -->
+<script th:src="@{/home/js/popper.min.js}"></script>
+<!-- Bootstrap -->
+<script th:src="@{/home/js/bootstrap.min.js}"></script>
+<!-- All Plugins -->
+<script th:src="@{/home/js/roberto.bundle.js}"></script>
+<!-- Active -->
+<script th:src="@{/home/js/default-assets/active.js}"></script>
+<script th:src="@{/js/book.js}"></script>
+</body>
+</html>

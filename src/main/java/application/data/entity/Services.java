@@ -31,4 +31,7 @@ public class Services {
 
     @Column(name = "is_delete")
     private int isDelete;
+
+    @Column(name = "price")
+    private Double price;
 }

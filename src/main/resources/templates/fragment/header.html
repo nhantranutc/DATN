@@ -36,13 +36,26 @@
                     </div>
 
                     <div class="col-6">
-                        <div class="top-header-content">
-                            <!-- Top Social Area -->
-                            <div class="top-social-area ml-auto">
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-tripadvisor" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                        <div sec:authorize="isAuthenticated()">
+                            <div class="top-header-content">
+                                <!-- Top Social Area -->
+                                <div class="top-social-area ml-auto">
+                                    <a th:href="${'/history'}" style="font-size: 25px"><i class="fa fa-clock-o" aria-hidden="true"></i></a>
+                                    <a th:href="${'/user/detail'}">
+                                        <img th:src="${vm.getUser().getAvatar()}" style="border-radius: 30px; margin-top: -8px;" height="30px" width="30px" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div sec:authorize="isAnonymous()">
+                            <div class="top-header-content">
+                                <!-- Top Social Area -->
+                                <div class="top-social-area ml-auto">
+                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                    <a th:href="${'/login'}">Login</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -198,9 +211,22 @@
                                 </select>
                             </div>
 
-                            <div class="col-6 col-md-2 col-lg-9">
+                            <div class="col-6 col-md-2 col-lg-3">
+                                <label>Email:</label>
+                                <input type="email" class="form-control" id="email">
+                            </div>
+
+                            <div class="col-6 col-md-2 col-lg-3">
                                 <label>Nội dung:</label>
                                 <textarea class="form-control" id="content"></textarea>
+                            </div>
+
+                            <div class="col-4 col-md-2 col-lg-3">
+                                <label>Hình thức: </label>
+                                <select size="3" class="form-control" id="action-type">
+                                    <option value="1">Bảo dưỡng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                                    <option value="2">Thay phụ tùng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                                </select>
                             </div>
 
                             <div class="col-12 col-md-3">

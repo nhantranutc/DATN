@@ -12,4 +12,6 @@ public class BookVM {
     private String vehicleBrand;
     private String content;
     private String appointmentDate;
+    private String statusName;
+    private String email;
 }

@@ -2,6 +2,7 @@ package application.data.service;
 
 import application.data.entity.AppointmentBook;
 import application.data.repository.AppointmentBookRepository;
+import application.model.viewmodel.chart.ChartDataVM;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,11 +63,23 @@ public class AppointmentBookSevice {
         }
     }
 
-    public List<AppointmentBook> getListAllAppointmentBookByCreateDate(Date createDate) {
-        return appointmentBookRepository.getListAllAppointmentBookByCreateDate(createDate);
+    public List<AppointmentBook> getListAllAppointmentBookByCreateDate1(Date createDate) {
+        return appointmentBookRepository.getListAllAppointmentBookByCreateDate1(createDate);
+    }
+
+    public List<AppointmentBook> getListAllAppointmentBookByCreateDate2(Date createDate) {
+        return appointmentBookRepository.getListAllAppointmentBookByCreateDate2(createDate);
     }
 
     public Page<AppointmentBook> getListAllAppointmentBookByCreateDateWithPageable(Pageable pageable, Date createDate) {
         return appointmentBookRepository.getListAllAppointmentBookByCreateDateWithPageable(pageable, createDate);
+    }
+
+    public List<ChartDataVM> countAppointmentBookInDay() {
+        return appointmentBookRepository.countAppointmentBookInDay();
+    }
+
+    public AppointmentBook findAppointmentBookByEmail(String email) {
+        return appointmentBookRepository.findAppointmentBookByEmail(email);
     }
 }

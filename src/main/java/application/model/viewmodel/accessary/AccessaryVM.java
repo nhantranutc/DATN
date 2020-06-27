@@ -14,4 +14,7 @@ public class AccessaryVM {
     private String image;
     private String origin;
     private String description;
+    private int quantity;
+    private int cartId;
+    private String pay;
 }

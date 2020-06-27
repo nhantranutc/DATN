@@ -54,7 +54,7 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item" th:if="${vm.getRoleId() == 1}">
+        <li class="nav-item" th:if="${vm.getRoleId() == 1} or ${vm.getRoleId() == 4}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Quản Lý</span>
@@ -71,24 +71,24 @@
         </li>
 
         <li class="nav-item" th:if="${vm.getRoleId() == 1}">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" th:href="${'/admin/user'}">
                 <i class="fas fa-fw fa-user"></i>
                 <span>Nhân Viên</span></a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+        <li class="nav-item" th:if="${vm.getRoleId() == 1} or ${vm.getRoleId() == 2}">
+            <a class="nav-link" th:href="${'/admin/bill'}">
                 <i class="fas fa-fw fa-sticky-note"></i>
                 <span>Lập Hóa Đơn</span></a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+        <li class="nav-item" th:if="${vm.getRoleId() == 1} or ${vm.getRoleId() == 2}">
+            <a class="nav-link" th:href="${'/admin/order'}">
                 <i class="fas fa-fw fa-cart-plus"></i>
                 <span>Hóa Đơn</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" th:if="${vm.getRoleId() == 1} or ${vm.getRoleId() == 2}">
             <a class="nav-link" th:href="${'/admin/book'}">
                 <i class="fas fa-fw fa-clock"></i>
                 <span>Lịch Hẹn</span></a>
@@ -159,7 +159,7 @@
                                     <th style="text-align: center">Mô tả</th>
                                     <th style="text-align: center; width: 100px">Tác giả</th>
                                     <th style="text-align: center; width: 200px">Ngày tạo</th>
-                                    <th style="text-align: center; width: 50px"></th>
+                                    <th style="text-align: center; width: 50px" th:if="${vm.getRoleId() == 1}"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -170,7 +170,7 @@
                                         <td style="text-align: center" th:text="${item.getShortDesc()}"></td>
                                         <td style="text-align: center" th:text="${item.getAuthor()}"></td>
                                         <td style="text-align: center" th:text="${item.getCreateDate()}"></td>
-                                        <td style="text-align: center">
+                                        <td style="text-align: center" th:if="${vm.getRoleId() == 1}">
                                             <a th:attr="data-news = ${item.getNewsId()}" data-toggle="modal" data-target="#displayModal" class="edit-news">
                                                 <i class="fas fa-cog fa-sm"></i>
                                             </a>

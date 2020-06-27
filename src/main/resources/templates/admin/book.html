@@ -54,7 +54,7 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item" th:if="${vm.getRoleId() == 1}">
+        <li class="nav-item" th:if="${vm.getRoleId() == 1} or ${vm.getRoleId() == 4}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Quản Lý</span>
@@ -71,24 +71,24 @@
         </li>
 
         <li class="nav-item" th:if="${vm.getRoleId() == 1}">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" th:href="${'/admin/user'}">
                 <i class="fas fa-fw fa-user"></i>
                 <span>Nhân Viên</span></a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+        <li class="nav-item" th:if="${vm.getRoleId() == 1} or ${vm.getRoleId() == 2}">
+            <a class="nav-link" th:href="${'/admin/bill'}">
                 <i class="fas fa-fw fa-sticky-note"></i>
                 <span>Lập Hóa Đơn</span></a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+        <li class="nav-item" th:if="${vm.getRoleId() == 1} or ${vm.getRoleId() == 2}">
+            <a class="nav-link" th:href="${'/admin/order'}">
                 <i class="fas fa-fw fa-cart-plus"></i>
                 <span>Hóa Đơn</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" th:if="${vm.getRoleId() == 1} or ${vm.getRoleId() == 2}">
             <a class="nav-link" th:href="${'/admin/book'}">
                 <i class="fas fa-fw fa-clock"></i>
                 <span>Lịch Hẹn</span></a>
@@ -122,7 +122,6 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
@@ -157,20 +156,39 @@
                                     <th style="text-align: center">STT</th>
                                     <th style="text-align: center">Họ tên</th>
                                     <th style="text-align: center">Số điện thoại</th>
+                                    <th style="text-align: center">Email</th>
                                     <th style="text-align: center; width: 140px">Thương hiệu xe</th>
                                     <th style="text-align: center; width: 240px">Nội dung</th>
                                     <th style="text-align: center; width: 140px">Ngày hẹn</th>
+                                    <th style="text-align: center; width: 140px">Trạng thái</th>
+                                    <th style="text-align: center; width: 140px">Hành động</th>
+                                    <th style="text-align: center; width: 140px">Gửi Mail</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <th:block th:each="item,iter : ${vm.getBookVMList()}">
                                     <tr>
                                         <td style="text-align: center" th:text="${iter.index + 1}"></td>
-                                        <td style="text-align: center" th:text="${item.getFullName()}"></td>
-                                        <td style="text-align: center" th:text="${item.getPhoneNumber()}"></td>
-                                        <td style="text-align: center" th:text="${item.getVehicleBrand()}"></td>
-                                        <td style="text-align: center" th:text="${item.getContent()}"></td>
+                                        <td style="text-align: center; width: 140px" th:text="${item.getFullName()}"></td>
+                                        <td style="text-align: center; width: 140px" th:text="${item.getPhoneNumber()}"></td>
+                                        <td style="text-align: center; width: 140px" th:text="${item.getEmail()}"></td>
+                                        <td style="text-align: center; width: 160px" th:text="${item.getVehicleBrand()}"></td>
+                                        <td style="text-align: center; width: 160px" th:text="${item.getContent()}"></td>
                                         <td style="text-align: center" th:text="${item.getAppointmentDate()}"></td>
+                                        <td style="text-align: center" th:text="${item.getStatusName()}"></td>
+                                        <td style="text-align: center; width: 160px">
+                                            <a th:if="${item.getStatusName() == 'Chưa đến'}" style="color: green; " class="accept-order" th:attr="data-accept = ${item.getId()}">
+                                                <i class="fas fa-fw fa-check"></i>
+                                            </a>
+                                            <a th:if="${item.getStatusName() == 'Chưa đến'}" style="color: red" class="remove-order" th:attr="data-remove = ${item.getId()}">
+                                                <i class="fas fa-fw fa-times"></i>
+                                            </a>
+                                        </td>
+                                        <td style="text-align: center">
+                                            <a th:attr="data-mail = ${item.getEmail()}, data-name= ${item.getFullName()}" style="float: right;color: #FFFFFF" class="btn btn-primary btn-icon-split send-mail ">
+                                                <span class="text">Gửi</span>
+                                            </a>
+                                        </td>
                                     </tr>
                                 </th:block>
                             </table>
@@ -219,6 +237,10 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+
 <script th:src="@{/admin/vendor/jquery/jquery.min.js}"></script>
 <script th:src="@{/admin/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
@@ -234,6 +256,8 @@
 <!-- Page level custom scripts -->
 <script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>
 <script th:src="@{/admin/js/demo/chart-pie-demo.js}"></script>
+<script th:src="@{/js/admin-book.js}"></script>
+
 
 </body>
 

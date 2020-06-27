@@ -30,4 +30,17 @@ public class AppointmentBook {
 
     @Column(name = "content")
     private String content;
+
+    @Column(name = "action_type")
+    private String actionType;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "status_id" , insertable = false, updatable = false)
+    private int statusId;
+
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "status_id")
+    private Status status;
 }

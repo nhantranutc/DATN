@@ -35,6 +35,8 @@ public class BaseController {
 
     public LayoutHeaderVM getLayoutHeaderVM() {
         LayoutHeaderVM vm = new LayoutHeaderVM();
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.findUserByUsername(username);
 
         List<VehicleVM> vehicleVMList = new ArrayList<>();
         for(Vehicle vehicle : vehicleRepository.findAll()) {
@@ -43,6 +45,15 @@ public class BaseController {
             vehicleVM.setVehicleName(vehicle.getVehicleName());
 
             vehicleVMList.add(vehicleVM);
+        }
+
+        if(user != null) {
+            if(user.getAvatar() == null) {
+                user.setAvatar("https://p7.hiclipart.com/preview/336/946/494/avatar-user-medicine-surgery-patient-avatar.jpg");
+                vm.setUser(user);
+            } else {
+                vm.setUser(user);
+            }
         }
 
         vm.setLogo(LogoConstant.logo);

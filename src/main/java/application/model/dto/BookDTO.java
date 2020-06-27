@@ -12,4 +12,6 @@ public class BookDTO {
     private String appointmentDate;
     private int vehicleBrand;
     private String content;
+    private int actionType;
+    private String email;
 }

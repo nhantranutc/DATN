@@ -13,30 +13,30 @@ $(function() {
         labelChartAccessaryType.push(vm.chartAccessaryTypeVMS[i].label);
     }
 
-    // var dataChartSumAmountProductByCategory= [];
-    // var labelChartSumAmountProductByCategory = [];
-    //
-    // for(var i=0;i<vm.chartSumAmountPrductByCategory.length;i++) {
-    //     dataChartSumAmountProductByCategory.push(vm.chartSumAmountPrductByCategory[i].value);
-    //     labelChartSumAmountProductByCategory.push(vm.chartSumAmountPrductByCategory[i].label);
-    // }
+    var dataChartSumAmountProductByCategory= [];
+    var labelChartSumAmountProductByCategory = [];
 
-    // var dataChartSumPriceProductByCategory= [];
-    // var labelChartSumPriceProductByCategory = [];
-    //
-    // for(var i=0;i<vm.chartSumPricePrductByCategory.length;i++) {
-    //     dataChartSumPriceProductByCategory.push(vm.chartSumPricePrductByCategory[i].value);
-    //     labelChartSumPriceProductByCategory.push(vm.chartSumPricePrductByCategory[i].label);
-    // }
-    //
-    // var dataChartSumPriceInMonth= [];
-    // var labelChartSumPriceInMonth = [];
-    //
-    // for(var i=0;i<vm.chartSumPriceInMonth.length;i++) {
-    //     dataChartSumPriceInMonth.push(vm.chartSumPriceInMonth[i].value);
-    //     labelChartSumPriceInMonth.push(vm.chartSumPriceInMonth[i].label);
-    // }
-    //
+    for(var i=0;i<vm.totalPriceInMonthOfYear2020.length;i++) {
+        dataChartSumAmountProductByCategory.push(vm.totalPriceInMonthOfYear2020[i].value);
+        labelChartSumAmountProductByCategory.push(vm.totalPriceInMonthOfYear2020[i].label);
+    }
+
+    var dataCountAppointmentBookInDay= [];
+    var labelCountAppointmentBookInDay = [];
+
+    for(var i=0;i<vm.countAppointmentBookInDay.length;i++) {
+        dataCountAppointmentBookInDay.push(vm.countAppointmentBookInDay[i].value);
+        labelCountAppointmentBookInDay.push(vm.countAppointmentBookInDay[i].label);
+    }
+
+    var dataTotalPriceInDayOfMonth= [];
+    var labelTotalPriceInDayOfMonth = [];
+
+    for(var i=0;i<vm.chartTotalPriceInDayOfMonth.length;i++) {
+        dataTotalPriceInDayOfMonth.push(vm.chartTotalPriceInDayOfMonth[i].value);
+        labelTotalPriceInDayOfMonth.push(vm.chartTotalPriceInDayOfMonth[i].label);
+    }
+
     // var dataChartSumPriceInMonth1= [];
     // var labelChartSumPriceInMonth1 = [];
     //
@@ -53,57 +53,57 @@ $(function() {
     //     labelChartSumPriceInYear.push(vm.chartSumPriceInYear[i].label);
     // }
 
-    // var data = {
-    //     labels: labelChartSumAmountProductByCategory,
-    //     datasets: [{
-    //         label: 'Số Lượng',
-    //         data: dataChartSumAmountProductByCategory,
-    //         backgroundColor: [
-    //             'rgba(255, 99, 132, 0.2)',
-    //             'rgba(54, 162, 235, 0.2)',
-    //             'rgba(255, 206, 86, 0.2)',
-    //             'rgba(75, 192, 192, 0.2)',
-    //             'rgba(153, 102, 255, 0.2)',
-    //             'rgba(255, 159, 64, 0.2)'
-    //         ],
-    //         borderColor: [
-    //             'rgba(255,99,132,1)',
-    //             'rgba(54, 162, 235, 1)',
-    //             'rgba(255, 206, 86, 1)',
-    //             'rgba(75, 192, 192, 1)',
-    //             'rgba(153, 102, 255, 1)',
-    //             'rgba(255, 159, 64, 1)'
-    //         ],
-    //         borderWidth: 1,
-    //         fill: false
-    //     }]
-    // };
+    var data = {
+        labels: labelChartSumAmountProductByCategory,
+        datasets: [{
+            label: 'Số Lượng',
+            data: dataChartSumAmountProductByCategory,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1,
+            fill: false
+        }]
+    };
 
-    // var data1 = {
-    //     labels: labelChartSumPriceInMonth,
-    //     datasets: [{
-    //         label: 'Số Lượng',
-    //         data: dataChartSumPriceInMonth,
-    //         backgroundColor: [
-    //             'rgba(255, 99, 132, 0.2)',
-    //             'rgba(54, 162, 235, 0.2)',
-    //             'rgba(255, 206, 86, 0.2)',
-    //             'rgba(75, 192, 192, 0.2)',
-    //             'rgba(153, 102, 255, 0.2)',
-    //             'rgba(255, 159, 64, 0.2)'
-    //         ],
-    //         borderColor: [
-    //             'rgba(255,99,132,1)',
-    //             'rgba(54, 162, 235, 1)',
-    //             'rgba(255, 206, 86, 1)',
-    //             'rgba(75, 192, 192, 1)',
-    //             'rgba(153, 102, 255, 1)',
-    //             'rgba(255, 159, 64, 1)'
-    //         ],
-    //         borderWidth: 1,
-    //         fill: false
-    //     }]
-    // };
+    var data1 = {
+        labels: labelTotalPriceInDayOfMonth,
+        datasets: [{
+            label: 'Số Lượng',
+            data: dataTotalPriceInDayOfMonth,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1,
+            fill: false
+        }]
+    };
     var multiLineData = {
         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
         datasets: [{
@@ -187,31 +187,31 @@ $(function() {
     };
 
 
-    // var doughnutPieData1 = {
-    //
-    //     datasets: [{
-    //         data: dataChartSumPriceProductByCategory,
-    //         backgroundColor: [
-    //             'rgba(255, 99, 132, 0.5)',
-    //             'rgba(54, 162, 235, 0.5)',
-    //             'rgba(255, 206, 86, 0.5)',
-    //             'rgba(75, 192, 192, 0.5)',
-    //             'rgba(153, 102, 255, 0.5)',
-    //             'rgba(255, 159, 64, 0.5)'
-    //         ],
-    //         borderColor: [
-    //             'rgba(255,99,132,1)',
-    //             'rgba(54, 162, 235, 1)',
-    //             'rgba(255, 206, 86, 1)',
-    //             'rgba(75, 192, 192, 1)',
-    //             'rgba(153, 102, 255, 1)',
-    //             'rgba(255, 159, 64, 1)'
-    //         ],
-    //     }],
-    //
-    //     // These labels appear in the legend and in the tooltips when hovering different arcs
-    //     labels: labelChartSumPriceProductByCategory
-    // };
+    var doughnutPieData1 = {
+
+        datasets: [{
+            data: dataCountAppointmentBookInDay,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)',
+                'rgba(255, 159, 64, 0.5)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+        }],
+
+        // These labels appear in the legend and in the tooltips when hovering different arcs
+        labels: labelCountAppointmentBookInDay
+    };
     var doughnutPieOptions1 = {
         responsive: true,
         animation: {
@@ -248,7 +248,7 @@ $(function() {
     //     }]
     // };
 
-    var areaOptions = {
+        var areaOptions = {
         plugins: {
             filler: {
                 propagate: true

@@ -30,7 +30,11 @@ public class LoginController {
 
     @PostMapping("/register-user")
     public String registerNewUser (@Valid @ModelAttribute("user") User user) {
-        userService.registerNewUser(user);
-        return "redirect:/";
+        return userService.registerNewUser(user);
+    }
+
+    @GetMapping("/403")
+    public String error403() {
+        return "/403";
     }
 }

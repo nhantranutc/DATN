@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Accessary</title>
+
+    <!-- Custom fonts for this template-->
+    <link th:href="@{/admin/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link th:href="@{/admin/css/sb-admin-2.min.css}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">Nhẫn Trần<sup><3</sup></div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" th:href="${'/admin'}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Interface
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item" th:if="${vm.getRoleId() == 1} or ${vm.getRoleId() == 4}">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Quản Lý</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Danh sách quản lý:</h6>
+                    <a class="collapse-item" th:href="${'/admin/accessary'}">Phụ Tùng</a>
+                    <a class="collapse-item" th:href="${'/admin/accessaryType'}">Loại phụ tùng</a>
+                    <a class="collapse-item" th:href="${'/admin/service'}">Dịch Vụ</a>
+                    <a class="collapse-item" th:href="${'/admin/news'}">Tin Tức</a>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item" th:if="${vm.getRoleId() == 1}">
+            <a class="nav-link" th:href="${'/admin/user'}">
+                <i class="fas fa-fw fa-user"></i>
+                <span>Nhân Viên</span></a>
+        </li>
+
+        <li class="nav-item" th:if="${vm.getRoleId() == 1} or ${vm.getRoleId() == 2}">
+            <a class="nav-link" th:href="${'/admin/bill'}">
+                <i class="fas fa-fw fa-sticky-note"></i>
+                <span>Lập Hóa Đơn</span></a>
+        </li>
+
+        <li class="nav-item" th:if="${vm.getRoleId() == 1} or ${vm.getRoleId() == 2}">
+            <a class="nav-link" th:href="${'/admin/order'}">
+                <i class="fas fa-fw fa-cart-plus"></i>
+                <span>Hóa Đơn</span></a>
+        </li>
+
+        <li class="nav-item" th:if="${vm.getRoleId() == 1} or ${vm.getRoleId() == 2}">
+            <a class="nav-link" th:href="${'/admin/book'}">
+                <i class="fas fa-fw fa-clock"></i>
+                <span>Lịch Hẹn</span></a>
+        </li>
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item" th:if="${vm.getRoleId() == 1}">
+            <a class="nav-link" th:href="${'/admin/chart'}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Biểu Đồ</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+            <div th:replace="fragment/header-admin :: header_admin_info (vm=${vm.getLayoutHeaderAdminVM()})"></div>
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <div style="width: fit-content; float: right; margin-bottom: 0 ">
+                    <a th:if="${count > 0}" style="float: right;" th:href="${'/admin/cart'}" class="btn btn-primary btn-icon-split">
+                                <span class="icon text-white-50">
+                                  <i class="fas fa-arrow-right"></i>
+                                </span>
+                        <span class="text">Tiếp theo</span>
+                    </a>
+                </div>
+                <br>
+                <br>
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Quản Lý Phụ Tùng</h6>
+                    </div>
+                    <div class="card-body">
+                        <nav style="margin-left: -30px" class="navbar navbar-expand navbar-light topbar mb-4 static-top">
+                            <!-- Topbar Search -->
+                            <form th:action="@{/admin/bill}" method="get" th:object="${accessaryName}" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group">
+                                    <input th:field="*{name}" type="text" class="form-control bg-light border-0 small" placeholder="Nhập từ khóa..." aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </nav>
+
+                        <div class="table-responsive" >
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th style="text-align: center">Số thứ tự</th>
+                                    <th style="text-align: center">Tên phụ tùng</th>
+                                    <th style="text-align: center">Thuộc loại</th>
+                                    <th style="text-align: center">Giá (VNĐ)</th>
+                                    <th style="text-align: center">Số lượng</th>
+                                    <th style="text-align: center">Nguồn gốc</th>
+                                    <th style="text-align: center">Hành động</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <th:block th:each="item : ${vm.getAccessaryVMList()}">
+                                    <tr>
+                                        <td style="text-align: center" th:text="${item.getId()}"></td>
+                                        <td style="text-align: center" th:text="${item.getName()}"></td>
+                                        <td style="text-align: center" th:text="${item.getAccessaryTypeName()}"></td>
+                                        <td style="text-align: center" th:text="${item.getPrice()} + ' VNĐ'"></td>
+                                        <td style="text-align: center" th:text="${item.getQuantity()}"></td>
+                                        <td style="text-align: center" th:text="${item.getOrigin()}"></td>
+                                        <td style="text-align: center">
+                                            <a style="color: green" th:attr="data-accessary = ${item.getId()}" class="add-accessary">
+                                                <i class="fas fa-check"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </th:block>
+                            </table>
+                        </div>
+
+                        <nav style="margin-top: 50px" aria-label="..." th:if="${vm.getAccessaryVMList().size()>0}">
+                            <ul class="pagination">
+                                <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+                                    <li class="page-item active" th:if="${page.number == i}" aria-current="page">
+                                        <a class="page-link" th:href="${''}" th:text="${i+1}"><span class="sr-only"></span></a>
+                                    </li>
+                                    <li class="page-item"  th:unless="${page.number == i}"><a class="page-link" th:text="${i+1}"
+                                                                                              th:href="${'?'
+                                                                                       +('&page='+i)
+                                                                                       +(#httpServletRequest.getParameter('size')==null?'':('&size='+#httpServletRequest.getParameter('size')))
+                                                                                       +(#httpServletRequest.getParameter('name')==null?'':('&name='+#httpServletRequest.getParameter('name')))}"></a></li>
+                                </th:block>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Quản Lý Dịch Vụ</h6>
+                    </div>
+                    <div class="card-body">
+                        <nav style="margin-left: -30px" class="navbar navbar-expand navbar-light topbar mb-4 static-top">
+                            <!-- Topbar Search -->
+                            <form th:action="@{/admin/bill}" method="get" th:object="${serviceName}" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group">
+                                    <input th:field="*{serviceName}" type="text" class="form-control bg-light border-0 small" placeholder="Nhập từ khóa..." aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </nav>
+
+                        <div class="table-responsive" >
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th style="text-align: center">STT</th>
+                                    <th style="text-align: center">Tên dịch vụ</th>
+                                    <th style="text-align: center">Mô tả</th>
+                                    <th style="text-align: center; width: 150px">Hành động</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <th:block th:each="item : ${vm.getServicesVMList()}">
+                                    <tr>
+                                        <td style="text-align: center" th:text="${item.getId()}"></td>
+                                        <td style="text-align: center" th:text="${item.getServiceName()}"></td>
+                                        <td style="text-align: center" th:text="${item.getDescription()}"></td>
+                                        <td style="text-align: center">
+                                            <a style="color: green" th:attr="data-services = ${item.getId()}" class="add-service">
+                                                <i class="fas fa-check"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </th:block>
+                            </table>
+                        </div>
+
+                        <nav style="margin-top: 50px" aria-label="..." th:if="${vm.getServicesVMList().size()>0}">
+                            <ul class="pagination">
+                                <th:block th:each="i: ${#numbers.sequence(0, page1.totalPages - 1)}">
+                                    <li class="page-item active" th:if="${page1.number == i}" aria-current="page">
+                                        <a class="page-link" th:href="${''}" th:text="${i+1}"><span class="sr-only"></span></a>
+                                    </li>
+                                    <li class="page-item"  th:unless="${page1.number == i}"><a class="page-link" th:text="${i+1}"
+                                                                                              th:href="${'?'
+                                                                                       +('&page1='+i)
+                                                                                       +(#httpServletRequest.getParameter('size1')==null?'':('&size1='+#httpServletRequest.getParameter('size1')))
+                                                                                       +(#httpServletRequest.getParameter('serviceName')==null?'':('&serviceName='+#httpServletRequest.getParameter('serviceName')))}"></a></li>
+                                </th:block>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Nhẫn Trần Website 2020</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Bootstrap core JavaScript-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+
+<script th:src="@{/admin/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/admin/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Core plugin JavaScript-->
+<script th:src="@{/admin/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+<!-- Custom scripts for all pages-->
+<script th:src="@{/admin/js/sb-admin-2.min.js}"></script>
+
+<!-- Page level plugins -->
+<script th:src="@{/admin/vendor/chart.js/Chart.min.js}"></script>
+
+<!-- Page level custom scripts -->
+<script th:src="@{/admin/js/demo/chart-area-demo.js}"></script>
+<script th:src="@{/admin/js/demo/chart-pie-demo.js}"></script>
+<script th:src="@{/js/admin-bill.js}"></script>
+
+</body>
+
+</html>

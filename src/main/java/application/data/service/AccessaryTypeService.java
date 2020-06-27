@@ -3,6 +3,7 @@ package application.data.service;
 import application.data.entity.AccessaryType;
 import application.data.repository.AccessaryTypeRepository;
 import application.model.viewmodel.chart.ChartDataVM;
+import application.model.viewmodel.chart.ChartDataVM1;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +69,14 @@ public class AccessaryTypeService {
 
     public List<ChartDataVM> getAllAccessaryType() {
         return accessaryTypeRepository.getAllAccessaryType();
+    }
+
+    public List<ChartDataVM1> getTotalPriceInMonthOfYear2020() {
+        return accessaryTypeRepository.getTotalPriceInMonthOfYear2020();
+    }
+
+    public List<ChartDataVM1> getTotalPriceInDayOfMonth() {
+        return accessaryTypeRepository.getTotalPriceInDayOfMonth();
     }
 
 }

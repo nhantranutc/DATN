@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Order</title>
+
+    <link rel="stylesheet" th:href="@{/order/fonts/material-icon/css/material-design-iconic-font.min.css}">
+
+    <link rel="stylesheet" th:href="@{/order/css/style.css}">
+</head>
+<body>
+<div class="main">
+    <div class="container">
+        <form method="post" th:object="${order}" th:action="@{/admin/checkout}" class="appointment-form" id="appointment-form">
+            <h2 style="text-align: center; font-family: Arial">Thông Tin Khách Hàng</h2>
+            <div class="form-group-1">
+                <input th:field="*{customerName}" type="text" name="name" id="name" placeholder="Họ tên" required />
+                <input th:field="*{address}" type="text" name="address" id="address" placeholder="Địa chỉ" required />
+                <input th:field="*{email}" type="email" name="email" id="email" placeholder="Email" required />
+                <input th:field="*{phoneNumber}" type="number" name="phone_number" id="phone_number" placeholder="Số điện thoại" required />
+            </div>
+            <div class="form-submit">
+                <input type="submit" name="submit" id="submit" class="submit" value="Thanh Toán" />
+            </div>
+        </form>
+    </div>
+</div>
+<script th:src="@{/order/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/order/js/main.js}"></script>
+</body>
+</html>

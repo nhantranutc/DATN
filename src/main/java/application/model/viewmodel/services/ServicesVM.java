@@ -11,4 +11,8 @@ public class ServicesVM {
     private String description;
     private String content;
     private String image;
+    private String price;
+    private int amount;
+    private int cartId;
+    private String pay;
 }

@@ -16,6 +16,7 @@
 
 <div class="wrapper" style="background-image: url(https://i.pinimg.com/originals/cb/c2/2c/cbc22ca5a3d7568a742262639a9f6b3f.jpg);">
     <div class="inner">
+        <a th:href="${'/'}" style="font-size: 30px"><i class="zmdi zmdi-arrow-left"></i></a>
         <form th:action="@{/user/update}" th:object="${user}" method="post" id="myForm">
             <h3>Thông Tin Cá Nhân</h3>
             <img th:if="*{avatar}" th:src="*{avatar}" class="user-avatar" width="100px" height="100px" style="border-radius: 150px; margin-bottom: 40px; margin-left: 130px" alt="">
@@ -55,9 +56,13 @@
                 <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
             </div>
 
-            <button type="submit">Cập Nhật<i class="zmdi zmdi-arrow-right"></i></button>
-            <a style="font-size: 15px; margin-left: 165px; text-decoration: none" class="txt2" th:href="${'/admin'}">
-                Trở về
+            <button type="submit">Cập Nhật</button>
+            <a style="font-size: 15px; margin-left: 143px; text-decoration: none" class="txt2" th:href="${'/user/change-password'}">
+                Đổi mật khẩu
+            </a>
+            <br>
+            <a style="font-size: 15px; margin-left: 150px; text-decoration: none" class="txt2" th:href="${'/logout'}">
+                Đăng Xuất
             </a>
         </form>
     </div>

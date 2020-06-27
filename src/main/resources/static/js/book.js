@@ -6,10 +6,21 @@ $(document).ready(function () {
             $("#phone-number").val() === "" ||
             $("#appointment-date").val() === "" ||
             $("#content").val() === "" ||
+            $("#email").val() === "" ||
+            $("#action-type").val() === "" ||
             $("#vehicle-brand").val()==="") {
             swal(
                 'Lỗi',
                 'Bạn phải điền đầy đủ',
+                'error'
+            );
+            return;
+        }
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if( !re.test( $("#email").val() )) {
+            swal(
+                'Lỗi',
+                'Email không đúng ( abc@gmail.com )',
                 'error'
             );
             return;
@@ -20,6 +31,8 @@ $(document).ready(function () {
         dataBook.appointmentDate = $('#appointment-date').val();
         dataBook.vehicleBrand = $('#vehicle-brand').val();
         dataBook.content = $('#content').val();
+        dataBook.actionType = $('#action-type').val();
+        dataBook.email = $('#email').val();
 
         console.log(dataBook.appointmentDate);
 

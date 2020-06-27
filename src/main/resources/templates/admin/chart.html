@@ -54,7 +54,7 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item" th:if="${vm.getRoleId() == 1}">
+        <li class="nav-item" th:if="${vm.getRoleId() == 1} or ${vm.getRoleId() == 4}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Quản Lý</span>
@@ -71,24 +71,24 @@
         </li>
 
         <li class="nav-item" th:if="${vm.getRoleId() == 1}">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" th:href="${'/admin/user'}">
                 <i class="fas fa-fw fa-user"></i>
                 <span>Nhân Viên</span></a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+        <li class="nav-item" th:if="${vm.getRoleId() == 1} or ${vm.getRoleId() == 2}">
+            <a class="nav-link" th:href="${'/admin/bill'}">
                 <i class="fas fa-fw fa-sticky-note"></i>
                 <span>Lập Hóa Đơn</span></a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+        <li class="nav-item" th:if="${vm.getRoleId() == 1} or ${vm.getRoleId() == 2}">
+            <a class="nav-link" th:href="${'/admin/order'}">
                 <i class="fas fa-fw fa-cart-plus"></i>
                 <span>Hóa Đơn</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" th:if="${vm.getRoleId() == 1} or ${vm.getRoleId() == 2}">
             <a class="nav-link" th:href="${'/admin/book'}">
                 <i class="fas fa-fw fa-clock"></i>
                 <span>Lịch Hẹn</span></a>
@@ -140,14 +140,33 @@
                                         </div>
                                     </div>
                                 </div>
-<!--                                <div class="col-lg-6 grid-margin stretch-card">-->
-<!--                                    <div class="card">-->
-<!--                                        <div class="card-body">-->
-<!--                                            <h4 class="card-title" style="font-weight: bold">Tổng số sản phẩm bán được theo danh mục</h4>-->
-<!--                                            <canvas id="barChart" style="height:250px"></canvas>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
+                                <div class="col-lg-6 grid-margin stretch-card" style="float: right; margin-top: -295px">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title" style="font-weight: bold">Tổng doanh thu bán được theo tháng</h4>
+                                            <canvas id="barChart" style="height:250px"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="page-body-wrapper" style="margin-top: 20px">
+                                <div class="col-lg-6 grid-margin stretch-card">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title" style="font-weight: bold">Tổng số lịch đặt theo ngày</h4>
+                                            <canvas id="pieChart" style="height:250px"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 grid-margin stretch-card" style="float: right; margin-top: -295px">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title" style="font-weight: bold">Tổng doanh thu bán được theo ngày</h4>
+                                            <canvas id="lineChart" style="height:250px"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

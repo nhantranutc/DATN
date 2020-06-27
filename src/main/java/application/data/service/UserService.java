@@ -80,16 +80,16 @@ public class UserService {
         return userRepository.getListAllUserByFullNameContaining(pageable, fullName);
     }
 
-    public StatusRegisterUserEnum registerNewUser(User user) {
+    public String registerNewUser(User user) {
         logger.info("Start registerNewUser");
         try {
             // check existed user
             if(findUserByUsername(user.getUserName()) != null) {
-                return StatusRegisterUserEnum.Existed_Username;
+                return "redirect:/register?invalidUserName";
             }
 
             if(findUserByEmail(user.getEmail()) != null) {
-                return StatusRegisterUserEnum.Existed_Email;
+                return "redirect:/register?invalidEmail";
             }
 
             // hash pass
@@ -100,16 +100,16 @@ public class UserService {
 
             // insert new role
             UserRole userRole = new UserRole();
-            userRole.setRoleId(RoleIdConstant.Role_User);
+            userRole.setRoleId(RoleIdConstant.Role_Customer);
             userRole.setUserId(user.getId());
             userRole.setIsDelete(0);
 
             userRoleRepository.save(userRole);
 
-            return StatusRegisterUserEnum.Success;
+            return "redirect:/register?success";
         } catch (Exception ex) {
             logger.info("Exception on registerNewUser: " + ex.getMessage());
-            return StatusRegisterUserEnum.Error_OnSystem;
+            return "redirect:/register?fail";
         }
     }
 
