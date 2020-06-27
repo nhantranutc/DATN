@@ -1,5 +1,6 @@
 package application.controller.web;
 
+import application.constant.FormatDate;
 import application.constant.FormatPrice;
 import application.data.entity.Accessary;
 import application.data.entity.News;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +38,7 @@ public class HomeController extends BaseController {
 
     @GetMapping("")
     public String home(Model model,
-                       @Valid @ModelAttribute("accessarytName") AccessaryVM accessarytName) {
+                       @Valid @ModelAttribute("accessarytName") AccessaryVM accessarytName) throws ParseException {
         HomeLanding vm = new HomeLanding();
         List<Services> servicesList = servicesService.getListAllServices();
         List<ServicesVM> servicesVMList = new ArrayList<>();
@@ -60,7 +62,7 @@ public class HomeController extends BaseController {
             newsVM.setMainImage(news.getMainImage());
             newsVM.setShortDesc(news.getShortDesc());
             newsVM.setAuthor(news.getAuthor());
-            newsVM.setCreateDate(news.getCreateDate());
+            newsVM.setCreateDate(FormatDate.formatDate(news.getCreateDate()));
             newsVMS.add(newsVM);
         }
 

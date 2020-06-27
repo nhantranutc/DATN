@@ -241,8 +241,8 @@ public class OrderAdminController extends BaseController {
         infoCustomerVM.setEmail(order.getEmail());
         infoCustomerVM.setName(order.getCustomerName());
         infoCustomerVM.setNumberPhone(order.getPhoneNumber());
-        infoCustomerVM.setDate(formatterDate.format(order.getCreatedDate()));
-        infoCustomerVM.setTime(formatterTime.format(order.getCreatedDate()));
+        infoCustomerVM.setDate(formatterDate.format(new Date()));
+        infoCustomerVM.setTime(formatterTime.format(new Date()));
 
         List<AccessaryVM> accessaryVMList = new ArrayList<>();
         List<OrderDetail> orderDetailList = orderDetailService.getListOrderDetailByAccessaryId(id);

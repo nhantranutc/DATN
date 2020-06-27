@@ -15,5 +15,5 @@ public class NewsVM {
     private String content;
     private String shortDesc;
     private String author;
-    private Date createDate;
+    private String createDate;
 }

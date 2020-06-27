@@ -160,6 +160,7 @@
                                     <th style="text-align: center; width: 140px">Thương hiệu xe</th>
                                     <th style="text-align: center; width: 240px">Nội dung</th>
                                     <th style="text-align: center; width: 140px">Ngày hẹn</th>
+                                    <th style="text-align: center; width: 140px">Hình thức</th>
                                     <th style="text-align: center; width: 140px">Trạng thái</th>
                                     <th style="text-align: center; width: 140px">Hành động</th>
                                     <th style="text-align: center; width: 140px">Gửi Mail</th>
@@ -175,17 +176,21 @@
                                         <td style="text-align: center; width: 160px" th:text="${item.getVehicleBrand()}"></td>
                                         <td style="text-align: center; width: 160px" th:text="${item.getContent()}"></td>
                                         <td style="text-align: center" th:text="${item.getAppointmentDate()}"></td>
+                                        <td style="text-align: center" th:text="${item.getActionType()}"></td>
                                         <td style="text-align: center" th:text="${item.getStatusName()}"></td>
                                         <td style="text-align: center; width: 160px">
                                             <a th:if="${item.getStatusName() == 'Chưa đến'}" style="color: green; " class="accept-order" th:attr="data-accept = ${item.getId()}">
                                                 <i class="fas fa-fw fa-check"></i>
                                             </a>
-                                            <a th:if="${item.getStatusName() == 'Chưa đến'}" style="color: red" class="remove-order" th:attr="data-remove = ${item.getId()}">
+                                            <a th:if="${item.getStatusName() == 'Chưa đến'}" style="color: red" class="remove-order" th:attr="data-remove = ${item.getId()}" title="Hủy">
                                                 <i class="fas fa-fw fa-times"></i>
+                                            </a>
+                                            <a th:if="${item.getStatusName() == 'Bị hủy'}" style="color: red" class="delete-book" th:attr="data-id = ${item.getId()}" title="Xóa">
+                                                <i class="fas fa-fw fa-times-circle"></i>
                                             </a>
                                         </td>
                                         <td style="text-align: center">
-                                            <a th:attr="data-mail = ${item.getEmail()}, data-name= ${item.getFullName()}" style="float: right;color: #FFFFFF" class="btn btn-primary btn-icon-split send-mail ">
+                                            <a th:if="${item.getIsSend() == 1}" th:attr="data-mail = ${item.getEmail()}, data-name= ${item.getFullName()}, data-id= ${item.getId()}" style="color: #FFFFFF" class="btn btn-primary btn-icon-split send-mail ">
                                                 <span class="text">Gửi</span>
                                             </a>
                                         </td>

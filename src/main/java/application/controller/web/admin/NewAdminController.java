@@ -1,5 +1,6 @@
 package application.controller.web.admin;
 
+import application.constant.FormatDate;
 import application.constant.RoleIdConstant;
 import application.controller.web.BaseController;
 import application.data.entity.News;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +44,7 @@ public class NewAdminController extends BaseController {
     public String news(Model model, HttpServletRequest request,
                        @Valid @ModelAttribute("title") NewsVM title,
                        @RequestParam(name = "page", required = false, defaultValue = "0") Integer page,
-                       @RequestParam(name = "size", required = false, defaultValue = "5") Integer size) {
+                       @RequestParam(name = "size", required = false, defaultValue = "5") Integer size) throws ParseException {
 
         HomeAdminVM vm = new HomeAdminVM();
 
@@ -78,7 +80,7 @@ public class NewAdminController extends BaseController {
             newsVM.setTitle(news.getTitle());
             newsVM.setShortDesc(news.getShortDesc());
             newsVM.setAuthor(news.getAuthor());
-            newsVM.setCreateDate(news.getCreateDate());
+            newsVM.setCreateDate(FormatDate.formatDate(news.getCreateDate()));
 
             newsVMList.add(newsVM);
         }

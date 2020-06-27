@@ -85,6 +85,8 @@ public class BookAdminController extends BaseController {
             bookVM.setEmail(appointmentBook.getEmail());
             bookVM.setAppointmentDate(FormatDate.formatDate(appointmentBook.getAppointmentDate()));
             bookVM.setStatusName(appointmentBook.getStatus().getName());
+            bookVM.setIsSend(appointmentBook.getIsSend());
+            bookVM.setActionType(appointmentBook.getActionType());
 
             bookVMList.add(bookVM);
         }

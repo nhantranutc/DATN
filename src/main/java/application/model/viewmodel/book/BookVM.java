@@ -14,4 +14,6 @@ public class BookVM {
     private String appointmentDate;
     private String statusName;
     private String email;
+    private String actionType;
+    private int isSend;
 }

@@ -186,35 +186,43 @@
 
             <div class=" lienhe no-print1">
                 <div class="print-col-50">
-                    <!--                               <div class="row">-->
                     <div class="print-col-20">
                         <img src="https://cdn.doctailieu.com/images/2018/05/07/anh-10-hinh-o-to-den-trang-cho-be-tap-to-mau-kich-thich-sang-tao-5.jpg" alt="" width="200" height="200">
                     </div>
                     <div class="print-col-40">
+                        <b class="titleName">TRUNG TÂM BẢO DƯỠNG MONA MEDIA</b> <br>
                         <b>Địa chỉ: </b>
                         <span>Đại học GTVT - Số 3 phố Cầu Giấy</span><br>
                         <b>Số điện thoại: </b> <span>0985883475</span><br>
-                        <b>Email: </b> <span>fashion@.gmail.com</span><br>
-                        <b>Ngày lập: </b> <span th:text="${vm.getInfoCustomerVM().getDate()}"></span><br>
-                        <b>Giờ lập:</b> <span th:text="${vm.getInfoCustomerVM().getTime()}"></span>
+                        <b>Email: </b> <span>NhanTranUTC@.gmail.com</span><br>
+
                     </div>
-                    <!--                               </div>-->
                 </div>
 
                 <div class="orderTitle">
-                    <!--                                <h1 style="text-align: center">Hóa Đơn</h1>-->
-                    <!--                                <h3 style="text-align: center">Số Hóa Đơn: 01</h3>-->
                 </div>
                 <div class="infoCustomer">
                     <div class="infoCustomer1">
                         <span class="titlePrint">Hóa Đơn</span> <br>
                         <b>Số Hóa Đơn: </b> <span th:text="${vm.getInfoCustomerVM().getId()}"></span>
                     </div>
-                    <b>Tên khách hàng: </b> <span th:text="${vm.getInfoCustomerVM().getName()}"></span><br>
-                    <b>Số điện thoại: </b> <span th:text="${vm.getInfoCustomerVM().getNumberPhone()}"></span><br>
-                    <b>Địa chỉ: </b> <span th:text="${vm.getInfoCustomerVM().getAddress()}"></span><br>
-                    <b>Email: </b> <span th:text="${vm.getInfoCustomerVM().getEmail()}"></span><br>
+                    <div class="print-col-100">
+                        <div class="info1">
+                            <b>Tên khách hàng: </b> <span th:text="${vm.getInfoCustomerVM().getName()}"></span><br>
+                            <b>Số điện thoại: </b> <span th:text="${vm.getInfoCustomerVM().getNumberPhone()}"></span><br>
+                            <b>Địa chỉ: </b> <span th:text="${vm.getInfoCustomerVM().getAddress()}"></span><br>
+                            <b>Email: </b> <span th:text="${vm.getInfoCustomerVM().getEmail()}"></span><br>
+                        </div>
+
+                    </div>
                 </div>
+                <div class="print-col-100">
+                    <div class="info">
+                        <b>Ngày lập: </b> <span th:text="${vm.getInfoCustomerVM().getDate()}"></span><br>
+                        <b>Giờ lập:</b> <span th:text="${vm.getInfoCustomerVM().getTime()}"></span>
+                    </div>
+                </div>
+
             </div>
 
             <div class="card-body no-print1">
@@ -249,7 +257,18 @@
                     </table>
 
                     <span style="float: right;">Tổng: <b th:text="${vm.getTotalPrice()}  + ' VNĐ'"></b></span>
-                </div>s
+                </div>
+
+                <div class="print-col-50">
+                    <div class="print-col-30" style="margin-left: 100px">
+                        <b style="margin-left: 25px">Khách hàng</b> <br>
+                        <i>( Ký, ghi rõ họ tên )</i>
+                    </div>
+                    <div class="print-col-30" style="margin-left: 100px">
+                        <b style="margin-left: 20px">Người lập đơn</b> <br>
+                        <i>( Ký, ghi rõ họ tên )</i>
+                    </div>
+                </div>
             </div>
 
         </div>

@@ -1,5 +1,6 @@
 package application.controller.web;
 
+import application.constant.FormatDate;
 import application.data.entity.News;
 import application.data.service.NewsService;
 import application.model.viewmodel.accessary.AccessaryVM;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +29,7 @@ public class NewsController extends BaseController {
     public String news(Model model,
                        @Valid @ModelAttribute("accessarytName") AccessaryVM accessarytName,
                        @RequestParam(name = "page", required = false, defaultValue = "0") Integer page,
-                       @RequestParam(name = "size", required = false, defaultValue = "4") Integer size) {
+                       @RequestParam(name = "size", required = false, defaultValue = "4") Integer size) throws ParseException {
         HomeNewsVM vm = new HomeNewsVM();
         Pageable pageable = new PageRequest(page, size);
 
@@ -40,7 +42,7 @@ public class NewsController extends BaseController {
             newsVM.setMainImage(news.getMainImage());
             newsVM.setShortDesc(news.getShortDesc());
             newsVM.setAuthor(news.getAuthor());
-            newsVM.setCreateDate(news.getCreateDate());
+            newsVM.setCreateDate(FormatDate.formatDate(news.getCreateDate()));
 
             newsVMList.add(newsVM);
         }
@@ -55,7 +57,7 @@ public class NewsController extends BaseController {
             newsVM.setMainImage(news.getMainImage());
             newsVM.setShortDesc(news.getShortDesc());
             newsVM.setAuthor(news.getAuthor());
-            newsVM.setCreateDate(news.getCreateDate());
+            newsVM.setCreateDate(FormatDate.formatDate(news.getCreateDate()));
 
             hotNewsVMList.add(newsVM);
         }
@@ -72,7 +74,7 @@ public class NewsController extends BaseController {
 
     @GetMapping("detail/{newsId}")
     public String newsDetail (Model model, @PathVariable int newsId,
-                              @Valid @ModelAttribute("accessarytName") AccessaryVM accessarytName) {
+                              @Valid @ModelAttribute("accessarytName") AccessaryVM accessarytName) throws ParseException {
         HomeNewsVM vm = new HomeNewsVM();
 
         News news = newsService.findOne(newsId);
@@ -84,7 +86,7 @@ public class NewsController extends BaseController {
         newsVM.setAuthor(news.getAuthor());
         newsVM.setMainImage(news.getMainImage());
         newsVM.setShortDesc(news.getShortDesc());
-        newsVM.setCreateDate(news.getCreateDate());
+        newsVM.setCreateDate(FormatDate.formatDate(news.getCreateDate()));
 
         List<News> hotNewsPage = newsService.getListAllHotNews();
         List<NewsVM> hotNewsVMList = new ArrayList<>();
@@ -96,7 +98,7 @@ public class NewsController extends BaseController {
             newsVM1.setMainImage(news1.getMainImage());
             newsVM1.setShortDesc(news1.getShortDesc());
             newsVM1.setAuthor(news1.getAuthor());
-            newsVM1.setCreateDate(news1.getCreateDate());
+            newsVM1.setCreateDate(FormatDate.formatDate(news.getCreateDate()));
 
             hotNewsVMList.add(newsVM1);
         }

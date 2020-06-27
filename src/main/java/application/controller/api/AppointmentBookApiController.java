@@ -7,6 +7,7 @@ import application.data.service.VehicleService;
 import application.model.api.BaseApiResult;
 import application.model.api.DataApiResult;
 import application.model.dto.BookDTO;
+import application.model.dto.CartDTO;
 import application.model.dto.StatusDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,6 +57,7 @@ public class AppointmentBookApiController {
                 appointmentBook.setEmail(dto.getEmail());
                 appointmentBook.setAppointmentDate(formatter.parse(dto.getAppointmentDate()));
                 appointmentBook.setStatus(statusService.findOne(1));
+                appointmentBook.setIsSend(1);
                 if(dto.getActionType() == 1) {
                     appointmentBook.setActionType("Bảo dưỡng");
                 }
@@ -83,6 +85,7 @@ public class AppointmentBookApiController {
         try {
             AppointmentBook appointmentBook = appointmentBookSevice.findOne(dto.getId());
             appointmentBook.setStatus(statusService.findOne(2));
+            appointmentBook.setIsSend(0);
 
             appointmentBookSevice.addNewAppointmentBook(appointmentBook);
             result.setSuccess(true);
@@ -103,6 +106,7 @@ public class AppointmentBookApiController {
         try {
             AppointmentBook appointmentBook = appointmentBookSevice.findOne(dto.getId());
             appointmentBook.setStatus(statusService.findOne(3));
+            appointmentBook.setIsSend(0);
 
             appointmentBookSevice.addNewAppointmentBook(appointmentBook);
             result.setSuccess(true);
@@ -112,6 +116,24 @@ public class AppointmentBookApiController {
             result.setMessage(e.getMessage());
         }
 
+        return result;
+    }
+
+    @PostMapping("/delete")
+    public BaseApiResult deleteBook( @RequestBody BookDTO dto) {
+        BaseApiResult result = new BaseApiResult();
+
+        try {
+            if(appointmentBookSevice.deleteBook(dto.getId()) == true) {
+
+                result.setMessage("Xóa Thành Công");
+                result.setSuccess(true);
+                return result;
+            }
+        } catch (Exception e) {
+            result.setSuccess(false);
+            result.setMessage("Xóa bị lỗi!");
+        }
         return result;
     }
 }

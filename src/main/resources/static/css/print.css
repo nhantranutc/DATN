@@ -25,7 +25,7 @@
     }
 
     .print-col-50 {
-        width: 70%;
+        width: 100%;
         float: left;
         margin-top: 20px;
     }
@@ -37,18 +37,41 @@
     }
 
     .print-col-40 {
-        width: 60%;
+        width: 70%;
         float: right;
         margin-right: 60px;
         margin-top: 50px;
     }
 
+    .print-col-30 {
+        width: 40%;
+        float: left;
+        margin-left: 15px;
+    }
+
     .infoCustomer {
-        width: 70%;
+        width: 100%;
         float: left;
         margin-left: 15px;
         margin-bottom: 20px;
         /*background-color: pink;*/
+    }
+
+    .print-col-100 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .info {
+        width: 40%;
+        float: left;
+        margin-top: 75px;
+        margin-left: 190px;
+    }
+
+    .info1 {
+        width: 70%;
+        float: left;
     }
 
     .no-print {
@@ -68,7 +91,7 @@
         margin-left: 13px;
     }
     .infoCustomer1 {
-        margin-left: 430px;
+        margin-left: 380px;
         width: 100%;
         margin-bottom: 10px;
     }
@@ -90,6 +113,11 @@
     .number-order {
         margin-left: 10px;
     }
+
+    .titleName {
+        font-size: 30px;
+    }
+
 }
 
 .print-col-20 {

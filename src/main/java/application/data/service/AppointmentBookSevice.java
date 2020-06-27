@@ -82,4 +82,14 @@ public class AppointmentBookSevice {
     public AppointmentBook findAppointmentBookByEmail(String email) {
         return appointmentBookRepository.findAppointmentBookByEmail(email);
     }
+
+    public boolean deleteBook(int id) {
+        try {
+            appointmentBookRepository.delete(id);
+            return true;
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return false;
+    }
 }

@@ -43,4 +43,7 @@ public class AppointmentBook {
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "status_id")
     private Status status;
+
+    @Column(name = "is_send")
+    private int isSend;
 }

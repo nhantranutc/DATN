@@ -73,7 +73,7 @@ $(document).ready(function() {
 
         NProgress.start();
 
-        axios.get("/api/mail/" + $(this).data("mail") +"/"+$(this).data("name")).then(function(res){
+        axios.get("/api/mail1/" + $(this).data("mail") +"/"+$(this).data("name")+"/"+$(this).data("id")).then(function(res){
             NProgress.done();
             if(res.data.success) {
                 swal(
@@ -98,5 +98,38 @@ $(document).ready(function() {
                 'error'
             );
         })
+    });
+
+    $(".delete-book").on("click",function(){
+        var pdInfo = $(this).data("id");
+        dataOrder.id = pdInfo;
+
+        NProgress.start();
+        var linkGet = "/api/book/delete";
+        axios.post(linkGet, dataOrder).then(function(res){
+            NProgress.done();
+            if(res.data.success) {
+                swal(
+                    'Thành Công',
+                    res.data.message,
+                    'success'
+                ).then(function() {
+                    location.reload();
+                });
+            } else {
+                swal(
+                    'Lỗi',
+                    res.data.message,
+                    'error'
+                );
+            }
+        }, function(err){
+            NProgress.done();
+            swal(
+                'Lỗi',
+                'Lỗi',
+                'error'
+            );
+        });
     });
 });
